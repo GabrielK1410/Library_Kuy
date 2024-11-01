@@ -45,7 +45,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(858, 40);
+            this.pictureBox4.Location = new System.Drawing.Point(843, 48);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(272, 159);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -57,7 +57,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Lucida Calligraphy", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label1.Location = new System.Drawing.Point(727, 226);
+            this.label1.Location = new System.Drawing.Point(712, 234);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(520, 72);
             this.label1.TabIndex = 12;
@@ -66,7 +66,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(15, -4);
+            this.pictureBox1.Location = new System.Drawing.Point(-6, 1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(669, 701);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -78,10 +78,10 @@
             this.button1.BackColor = System.Drawing.Color.OldLace;
             this.button1.Font = new System.Drawing.Font("Gadugi", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.button1.Location = new System.Drawing.Point(781, 584);
+            this.button1.Location = new System.Drawing.Point(766, 561);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(430, 35);
+            this.button1.Size = new System.Drawing.Size(430, 51);
             this.button1.TabIndex = 26;
             this.button1.Text = "Create Account";
             this.button1.UseVisualStyleBackColor = false;
@@ -91,7 +91,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label3.Location = new System.Drawing.Point(777, 391);
+            this.label3.Location = new System.Drawing.Point(762, 399);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 22);
             this.label3.TabIndex = 25;
@@ -100,7 +100,7 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.Cornsilk;
-            this.textBox1.Location = new System.Drawing.Point(781, 428);
+            this.textBox1.Location = new System.Drawing.Point(766, 436);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(430, 26);
@@ -111,7 +111,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label2.Location = new System.Drawing.Point(777, 303);
+            this.label2.Location = new System.Drawing.Point(762, 311);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 22);
             this.label2.TabIndex = 23;
@@ -122,18 +122,19 @@
             this.btnLogin.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnLogin.Font = new System.Drawing.Font("Gadugi", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLogin.Location = new System.Drawing.Point(781, 523);
+            this.btnLogin.Location = new System.Drawing.Point(766, 500);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(430, 35);
+            this.btnLogin.Size = new System.Drawing.Size(430, 51);
             this.btnLogin.TabIndex = 22;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtUsername
             // 
             this.txtUsername.BackColor = System.Drawing.Color.Cornsilk;
-            this.txtUsername.Location = new System.Drawing.Point(781, 340);
+            this.txtUsername.Location = new System.Drawing.Point(766, 348);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(430, 26);

@@ -16,5 +16,12 @@ namespace CleanSneakers
         {
             InitializeComponent();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+          FormAdminmain formAdminmain = new FormAdminmain();
+            formAdminmain.Show();
+            this.Hide();
+        }
     }
 }

@@ -29,5 +29,12 @@ namespace CleanSneakers
             frmMain.Show();
             this.Hide();
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            FormAdminlogin frm = new FormAdminlogin();   
+            frm.Show();
+            this.Hide();
+        }
     }
 }
