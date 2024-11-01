@@ -33,8 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.EntityFramework, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Web, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlXml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,11 +68,29 @@
     <Compile Include="FormAdminmain.Designer.cs">
       <DependentUpon>FormAdminmain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAkunUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAkunUser.Designer.cs">
+      <DependentUpon>FormAkunUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormHistori.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormHistori.Designer.cs">
       <DependentUpon>FormHistori.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHistoriAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHistoriAdmin.Designer.cs">
+      <DependentUpon>FormHistoriAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPengaturanakun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPengaturanakun.Designer.cs">
+      <DependentUpon>FormPengaturanakun.cs</DependentUpon>
     </Compile>
     <Compile Include="FormUserlogin.cs">
       <SubType>Form</SubType>
@@ -93,8 +115,17 @@
     <EmbeddedResource Include="FormAdminmain.resx">
       <DependentUpon>FormAdminmain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAkunUser.resx">
+      <DependentUpon>FormAkunUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormHistori.resx">
       <DependentUpon>FormHistori.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHistoriAdmin.resx">
+      <DependentUpon>FormHistoriAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPengaturanakun.resx">
+      <DependentUpon>FormPengaturanakun.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserlogin.resx">
       <DependentUpon>FormUserlogin.cs</DependentUpon>
