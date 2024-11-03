@@ -14,7 +14,6 @@ namespace CleanSneakers
 {
     public partial class FormUserlogin : Form
     {
-        public static string LoggedInUsername;
         private MySqlConnection koneksi;
         private MySqlDataAdapter adapter;
         private MySqlCommand perintah;
@@ -77,8 +76,8 @@ namespace CleanSneakers
                         {
                             MessageBox.Show("Akun berhasil ditambahkan!");
                             // Clear the text fields after successful insertion
-                            txtPassword.Clear();
-                            txtUsername.Clear();
+                            txtUsername.Text = "";
+                            txtPassword.Text = "";
                         }
                         else
                         {
@@ -101,35 +100,33 @@ namespace CleanSneakers
         {
             try
             {
-                // Query untuk mencari username di database
-                string query = string.Format("SELECT * FROM tbl_loginuser WHERE username = '{0}'", txtUsername.Text);
-                DataSet ds = new DataSet();
+                query = string.Format("select * from tbl_loginuser where username = '{0}'", txtUsername.Text);
+                ds.Clear();
                 koneksi.Open();
-                MySqlCommand perintah = new MySqlCommand(query, koneksi);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(perintah);
+                perintah = new MySqlCommand(query, koneksi);
+                adapter = new MySqlDataAdapter(perintah);
+                perintah.ExecuteNonQuery();
                 adapter.Fill(ds);
                 koneksi.Close();
-
-                // Cek apakah username ditemukan
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    string sandi = ds.Tables[0].Rows[0]["password"].ToString();
-
-                    // Cek apakah password benar
-                    if (sandi == txtPassword.Text)
+                    foreach (DataRow kolom in ds.Tables[0].Rows)
                     {
-                        // Simpan username ke variabel global
-                        LoggedInUsername = txtUsername.Text;
+                        string sandi;
+                        sandi = kolom["password"].ToString();
+                        if (sandi == txtPassword.Text)
+                        {
+                            FormUsermain formUsermain = new FormUsermain();
+                            formUsermain.Show();
+                            this.Hide();
 
-                        // Buka form utama (FormUsermain) dan sembunyikan form login
-                        FormUsermain formUsermain = new FormUsermain();
-                        formUsermain.Show();
-                        this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Anda salah input password");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Anda salah input password");
-                    }
+
                 }
                 else
                 {

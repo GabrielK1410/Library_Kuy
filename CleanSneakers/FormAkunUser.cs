@@ -18,7 +18,7 @@ namespace CleanSneakers
         private MySqlCommand perintah;
         private DataSet ds = new DataSet();
         private string alamat, query;
-        public static string LoggedInUsername;
+        
         public FormAkunUser()
         {
             alamat = "server=localhost; database=db_library; username=root; password=;";
@@ -36,12 +36,26 @@ namespace CleanSneakers
 
         }
 
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            FormUsermain formUsermain = new FormUsermain();
+            formUsermain.Show();
+            this.Hide();    
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            FormHistori formHistori = new FormHistori();    
+            formHistori.Show();
+            this.Hide();
+        }
+
         private void FormAkunUser_Load(object sender, EventArgs e)
         {
             try
             {
                 // Buat query yang mem-filter data berdasarkan pengguna yang login
-                string query = string.Format("SELECT * FROM tbl_loginuser WHERE username = '{0}'", Form1.LoggedInUsername);
+                string query = string.Format("SELECT * FROM tbl_loginuser WHERE username = '{0}'", txtUsername.Text);
                 DataSet ds = new DataSet();
 
                 // Buka koneksi, eksekusi query, dan masukkan hasilnya ke dalam DataGridView

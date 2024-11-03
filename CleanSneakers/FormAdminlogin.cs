@@ -23,5 +23,10 @@ namespace CleanSneakers
             formAdminmain.Show();
             this.Hide();
         }
+
+        private void FormAdminlogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
