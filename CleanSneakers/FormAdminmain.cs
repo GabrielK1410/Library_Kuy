@@ -34,7 +34,7 @@ namespace CleanSneakers
             {
                 if (txtJudulbuku.Text != "")
                 {
-                    query = string.Format("select * from tbl_buku where username = '{0}'", txtJudulbuku.Text);
+                    query = string.Format("select * from tbl_buku where judul_buku = '{0}'", txtJudulbuku.Text);
                     ds.Clear();
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
@@ -55,7 +55,6 @@ namespace CleanSneakers
                         txtJudulbuku.Enabled = true;
                         dataGridView1.DataSource = ds.Tables[0];
                         btnTambah.Enabled = true;
-                        btnEdit.Enabled = true;
                         btnHapus.Enabled = true;
                         btnCari.Enabled = true;
                         btnClear.Enabled = true;
@@ -176,13 +175,13 @@ namespace CleanSneakers
                 adapter.Fill(ds);
                 koneksi.Close();
                 dataGridView1.DataSource = ds.Tables[0];
-                dataGridView1.Columns[0].Width = 100;
+                dataGridView1.Columns[0].Width = 120;
                 dataGridView1.Columns[0].HeaderText = "ID Buku";
                 dataGridView1.Columns[1].Width = 150;
                 dataGridView1.Columns[1].HeaderText = "Judul Buku";
-                dataGridView1.Columns[2].Width = 120;
+                dataGridView1.Columns[2].Width = 150;
                 dataGridView1.Columns[2].HeaderText = "Pengarang Buku";
-                dataGridView1.Columns[3].Width = 120;
+                dataGridView1.Columns[3].Width = 150;
                 dataGridView1.Columns[3].HeaderText = "Tahun Terbit";
                
 
@@ -191,7 +190,6 @@ namespace CleanSneakers
                 txtPengarangbuku.Clear();
                 txtTahunterbit.Clear();
                 txtIDbuku.Focus();
-                btnEdit.Enabled = false;
                 btnHapus.Enabled = false;
                 btnClear.Enabled = false;
                 btnTambah.Enabled = true;
@@ -237,6 +235,72 @@ namespace CleanSneakers
                 else
                 {
                     MessageBox.Show("Data Tidak lengkap !!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click_1(object sender, EventArgs e)
+        {
+            FormHistoriAdmin formHistoriAdmin = new FormHistoriAdmin();
+            formHistoriAdmin.Show();
+            this.Hide();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            FormPengaturanakun formPengaturanakun = new FormPengaturanakun();
+            formPengaturanakun.Show();
+            this.Hide();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtJudulbuku.Text != "" && txtPengarangbuku.Text != "")
+                {
+                    query = string.Format("UPDATE tbl_buku SET judul_buku = '{0}', pengarang = '{1}' WHERE id_buku = '{2}'", txtJudulbuku.Text, txtPengarangbuku.Text, txtIDbuku.Text);
+
+                    using (MySqlCommand perintah = new MySqlCommand(query, koneksi))
+                    {
+                        if (koneksi.State == ConnectionState.Closed)
+                        {
+                            koneksi.Open();  // Open the connection only if it's closed
+                        }
+
+                        int res = perintah.ExecuteNonQuery();
+                        koneksi.Close();  // Close the connection immediately after executing the query
+
+                        if (res == 1)
+                        {
+                            MessageBox.Show("Edit Data Sukses ...");
+                            FormAdminmain_Load(null, null);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Gagal Edit Data ...");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Data Tidak Lengkap!");
                 }
             }
             catch (Exception ex)

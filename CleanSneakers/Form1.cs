@@ -36,5 +36,12 @@ namespace CleanSneakers
             frm.Show();
             this.Hide();
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            FormUsermain frmUsermain = new FormUsermain();
+            frmUsermain.Show();
+            this.Hide();
+        }
     }
 }

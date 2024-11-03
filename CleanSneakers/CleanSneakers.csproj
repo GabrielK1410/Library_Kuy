@@ -92,6 +92,12 @@
     <Compile Include="FormPengaturanakun.Designer.cs">
       <DependentUpon>FormPengaturanakun.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUserAkun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUserAkun.Designer.cs">
+      <DependentUpon>FormUserAkun.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUserlogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPengaturanakun.resx">
       <DependentUpon>FormPengaturanakun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUserAkun.resx">
+      <DependentUpon>FormUserAkun.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserlogin.resx">
       <DependentUpon>FormUserlogin.cs</DependentUpon>
