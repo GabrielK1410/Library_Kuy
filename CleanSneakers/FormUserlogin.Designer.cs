@@ -79,10 +79,10 @@
             this.btnLogin.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnLogin.Font = new System.Drawing.Font("Gadugi", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLogin.Location = new System.Drawing.Point(773, 546);
+            this.btnLogin.Location = new System.Drawing.Point(773, 532);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(430, 35);
+            this.btnLogin.Size = new System.Drawing.Size(430, 51);
             this.btnLogin.TabIndex = 16;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -134,10 +134,10 @@
             this.button1.BackColor = System.Drawing.Color.OldLace;
             this.button1.Font = new System.Drawing.Font("Gadugi", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.button1.Location = new System.Drawing.Point(773, 607);
+            this.button1.Location = new System.Drawing.Point(773, 593);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(430, 35);
+            this.button1.Size = new System.Drawing.Size(430, 50);
             this.button1.TabIndex = 20;
             this.button1.Text = "Create Account";
             this.button1.UseVisualStyleBackColor = false;

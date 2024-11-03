@@ -165,6 +165,8 @@ namespace CleanSneakers
                             // Optionally, reload the form or clear the input fields
                             txtNamapeminjam.Clear();
                             txtJudulbuku.Clear();
+                            txtPengarangbuku.Clear();
+                            txtTahunterbit.Clear();
                             dtpTanggalpinjam.Value = DateTime.Now;
                             dtpTanggalkembali.Value = DateTime.Now;
                             txtNamapeminjam.Focus();

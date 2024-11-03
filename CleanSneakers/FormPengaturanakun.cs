@@ -56,7 +56,7 @@ namespace CleanSneakers
             {
                 if (txtPassword.Text != "" && txtUsername.Text != "")
                 {
-                    query = string.Format("UPDATE tbl_loginform SET password = '{0}', username = '{1}' WHERE id = '{2}'", txtPassword.Text, txtUsername.Text, txtIDbuku.Text);
+                    query = string.Format("UPDATE tbl_loginuser SET password = '{0}', username = '{1}' WHERE id = '{2}'", txtPassword.Text, txtUsername.Text, txtIDbuku.Text);
 
                     using (MySqlCommand perintah = new MySqlCommand(query, koneksi))
                     {
@@ -109,39 +109,54 @@ namespace CleanSneakers
         {
             try
             {
-                query = string.Format("select * from tbl_loginuser where username = '{0}'", txtUsername.Text);
-                ds.Clear();
-                koneksi.Open();
-                perintah = new MySqlCommand(query, koneksi);
-                adapter = new MySqlDataAdapter(perintah);
-                perintah.ExecuteNonQuery();
-                adapter.Fill(ds);
-                koneksi.Close();
-                if (ds.Tables[0].Rows.Count > 0)
+                // Check if all necessary fields are filled
+                if (txtUsername.Text != "" && txtPassword.Text != "")
                 {
-                    foreach (DataRow kolom in ds.Tables[0].Rows)
+                    // Step 1: Check if the username already exists
+                    string checkQuery = string.Format("SELECT * FROM tbl_loginuser WHERE username = '{0}'", txtUsername.Text);
+                    DataSet dsCheck = new DataSet();
+                    koneksi.Open();
+                    MySqlCommand checkCmd = new MySqlCommand(checkQuery, koneksi);
+                    MySqlDataAdapter checkAdapter = new MySqlDataAdapter(checkCmd);
+                    checkAdapter.Fill(dsCheck);
+                    koneksi.Close();
+
+                    if (dsCheck.Tables[0].Rows.Count > 0)
                     {
-                        string sandi;
-                        sandi = kolom["password"].ToString();
-                        if (sandi == txtPassword.Text)
+                        // If the username already exists, show a message
+                        MessageBox.Show("Username sudah terdaftar. Silakan gunakan username lain.");
+                    }
+                    else
+                    {
+                        // Step 2: Insert the new account into the database
+                        string insertQuery = string.Format("INSERT INTO tbl_loginform (username, password) VALUES ('{0}', '{1}')", txtUsername.Text, txtPassword.Text);
+
+                        koneksi.Open();
+                        MySqlCommand insertCmd = new MySqlCommand(insertQuery, koneksi);
+                        int result = insertCmd.ExecuteNonQuery(); // Execute the insert query
+                        koneksi.Close();
+
+                        if (result == 1) // If insert was successful
                         {
- 
+                            MessageBox.Show("Akun berhasil ditambahkan!");
+                            // Clear the text fields after successful insertion
+                            txtUsername.Text = "";
+                            txtPassword.Text = "";
                         }
                         else
                         {
-                            MessageBox.Show("Anda salah input password");
+                            MessageBox.Show("Gagal menambahkan akun.");
                         }
                     }
-
                 }
                 else
                 {
-                    MessageBox.Show("Username tidak ditemukan");
+                    MessageBox.Show("Data tidak lengkap. Mohon lengkapi semua field.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error: " + ex.ToString());
             }
         }
 
@@ -151,7 +166,7 @@ namespace CleanSneakers
             {
                 if (txtUsername.Text != "")
                 {
-                    query = string.Format("select * from tbl_loginform where username = '{0}'", txtUsername.Text);
+                    query = string.Format("select * from tbl_loginuser where username = '{0}'", txtUsername.Text);
                     ds.Clear();
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
@@ -214,7 +229,7 @@ namespace CleanSneakers
                     // Konfirmasi sebelum menghapus data
                     if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        query = string.Format("DELETE FROM tbl_loginform WHERE id = '{0}'", txtIDbuku.Text);
+                        query = string.Format("DELETE FROM tbl_loginuser WHERE id = '{0}'", txtIDbuku.Text);
 
                         if (koneksi.State == ConnectionState.Closed)
                         {

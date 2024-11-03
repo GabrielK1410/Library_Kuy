@@ -350,6 +350,7 @@
             this.btnUpdate.TabIndex = 93;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnClear
             // 
@@ -359,6 +360,7 @@
             this.btnClear.TabIndex = 92;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnCari
             // 
@@ -368,6 +370,7 @@
             this.btnCari.TabIndex = 91;
             this.btnCari.Text = "Cari";
             this.btnCari.UseVisualStyleBackColor = true;
+            this.btnCari.Click += new System.EventHandler(this.btnCari_Click_1);
             // 
             // btnHapus
             // 
@@ -377,6 +380,7 @@
             this.btnHapus.TabIndex = 90;
             this.btnHapus.Text = "Hapus";
             this.btnHapus.UseVisualStyleBackColor = true;
+            this.btnHapus.Click += new System.EventHandler(this.btnHapus_Click);
             // 
             // btnTambah
             // 
@@ -386,6 +390,7 @@
             this.btnTambah.TabIndex = 89;
             this.btnTambah.Text = "Tambah";
             this.btnTambah.UseVisualStyleBackColor = true;
+            this.btnTambah.Click += new System.EventHandler(this.btnTambah_Click);
             // 
             // FormHistoriAdmin
             // 

@@ -327,9 +327,9 @@
             this.label12.ForeColor = System.Drawing.Color.Cornsilk;
             this.label12.Location = new System.Drawing.Point(36, 320);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(182, 28);
+            this.label12.Size = new System.Drawing.Size(177, 28);
             this.label12.TabIndex = 97;
-            this.label12.Text = "Peminjaman Buku";
+            this.label12.Text = "Manajemen Buku";
             // 
             // btnUpdate
             // 

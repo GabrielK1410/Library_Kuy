@@ -52,6 +52,68 @@ namespace CleanSneakers
             this.Hide();
         }
 
+        private void btnCari_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtJudulbuku.Text != "")
+                {
+                    query = string.Format("select * from tbl_loginuser where judul_buku = '{0}'", txtJudulbuku.Text);
+                    ds.Clear();
+                    koneksi.Open();
+                    perintah = new MySqlCommand(query, koneksi);
+                    adapter = new MySqlDataAdapter(perintah);
+                    perintah.ExecuteNonQuery();
+                    adapter.Fill(ds);
+                    koneksi.Close();
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow kolom in ds.Tables[0].Rows)
+                        {
+                            txtTahunterbit.Text = kolom["Tahun Terbit"].ToString();
+                            txtJudulbuku.Text = kolom["Judul Buku"].ToString();
+                            txtPengarangbuku.Text = kolom["Pengarang Buku"].ToString();
+
+                        }
+                        txtJudulbuku.Enabled = true;
+                        dataGridView1.DataSource = ds.Tables[0];
+                        btnPrint.Enabled = true;
+                        btnCari.Enabled = true;
+                        btnClear.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data Tidak Ada !!");
+                        FormHistori_Load(null, null);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtJudulbuku.Clear();
+                txtPengarangbuku.Clear();
+                txtTahunterbit.Clear();
+                FormHistori_Load(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void FormHistori_Load(object sender, EventArgs e)
         {
             try
@@ -60,7 +122,7 @@ namespace CleanSneakers
                 koneksi.Open();
 
                 // Menggunakan nama tabel yang benar sesuai database
-                query = "SELECT id_peminjam, nama_peminjam, IFNULL(tanggal_pinjam, '0001-01-01') AS tanggal_pinjam, IFNULL(tanggal_kembali, '0001-01-01') AS tanggal_kembali, judul_buku FROM tbl_peminjaman"; // Mengubah nama tabel menjadi tbl_peminjam
+                query = "SELECT id_peminjam, nama_peminjam, tanggal_pinjam,   tanggal_pinjam, tanggal_kembali,  tanggal_kembali, judul_buku FROM tbl_peminjaman"; // Mengubah nama tabel menjadi tbl_peminjam
                 perintah = new MySqlCommand(query, koneksi);
                 adapter = new MySqlDataAdapter(perintah);
 

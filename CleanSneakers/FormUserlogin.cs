@@ -14,6 +14,9 @@ namespace CleanSneakers
 {
     public partial class FormUserlogin : Form
     {
+        public static string LoggedInUsername;
+        public static string LoggedInPassword;
+
         private MySqlConnection koneksi;
         private MySqlDataAdapter adapter;
         private MySqlCommand perintah;
@@ -65,7 +68,7 @@ namespace CleanSneakers
                     else
                     {
                         // Step 2: Insert the new account into the database
-                        string insertQuery = string.Format("INSERT INTO tbl_loginform (username, password) VALUES ('{0}', '{1}')", txtUsername.Text, txtPassword.Text);
+                        string insertQuery = string.Format("INSERT INTO tbl_loginuser (username, password) VALUES ('{0}', '{1}')", txtUsername.Text, txtPassword.Text);
 
                         koneksi.Open();
                         MySqlCommand insertCmd = new MySqlCommand(insertQuery, koneksi);
@@ -116,6 +119,9 @@ namespace CleanSneakers
                         sandi = kolom["password"].ToString();
                         if (sandi == txtPassword.Text)
                         {
+                            LoggedInUsername = txtUsername.Text;
+                            LoggedInPassword = txtPassword.Text;
+
                             FormUsermain formUsermain = new FormUsermain();
                             formUsermain.Show();
                             this.Hide();
