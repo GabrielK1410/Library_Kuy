@@ -34,14 +34,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtTahunterbit = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtPengarangbuku = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtJudulbuku = new System.Windows.Forms.TextBox();
             this.txtNamapeminjam = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnCari = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -54,8 +50,6 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -118,37 +112,17 @@
             this.label6.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.label6.Location = new System.Drawing.Point(642, 381);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(155, 32);
+            this.label6.Size = new System.Drawing.Size(40, 32);
             this.label6.TabIndex = 46;
-            this.label6.Text = "Tahun Terbit";
+            this.label6.Text = "ID";
             // 
-            // txtTahunterbit
+            // txtID
             // 
-            this.txtTahunterbit.BackColor = System.Drawing.Color.OldLace;
-            this.txtTahunterbit.Location = new System.Drawing.Point(648, 433);
-            this.txtTahunterbit.Name = "txtTahunterbit";
-            this.txtTahunterbit.Size = new System.Drawing.Size(305, 26);
-            this.txtTahunterbit.TabIndex = 45;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label5.Location = new System.Drawing.Point(642, 291);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(202, 32);
-            this.label5.TabIndex = 44;
-            this.label5.Text = "Pengarang Buku";
-            // 
-            // txtPengarangbuku
-            // 
-            this.txtPengarangbuku.BackColor = System.Drawing.Color.OldLace;
-            this.txtPengarangbuku.Location = new System.Drawing.Point(648, 343);
-            this.txtPengarangbuku.Name = "txtPengarangbuku";
-            this.txtPengarangbuku.Size = new System.Drawing.Size(305, 26);
-            this.txtPengarangbuku.TabIndex = 43;
+            this.txtID.BackColor = System.Drawing.Color.OldLace;
+            this.txtID.Location = new System.Drawing.Point(648, 433);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(473, 26);
+            this.txtID.TabIndex = 45;
             // 
             // label3
             // 
@@ -167,40 +141,16 @@
             this.txtJudulbuku.BackColor = System.Drawing.Color.OldLace;
             this.txtJudulbuku.Location = new System.Drawing.Point(648, 254);
             this.txtJudulbuku.Name = "txtJudulbuku";
-            this.txtJudulbuku.Size = new System.Drawing.Size(305, 26);
+            this.txtJudulbuku.Size = new System.Drawing.Size(473, 26);
             this.txtJudulbuku.TabIndex = 41;
             // 
             // txtNamapeminjam
             // 
             this.txtNamapeminjam.BackColor = System.Drawing.Color.OldLace;
-            this.txtNamapeminjam.Location = new System.Drawing.Point(984, 254);
+            this.txtNamapeminjam.Location = new System.Drawing.Point(648, 345);
             this.txtNamapeminjam.Name = "txtNamapeminjam";
-            this.txtNamapeminjam.Size = new System.Drawing.Size(305, 26);
+            this.txtNamapeminjam.Size = new System.Drawing.Size(473, 26);
             this.txtNamapeminjam.TabIndex = 39;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label7.Location = new System.Drawing.Point(978, 381);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(203, 32);
-            this.label7.TabIndex = 37;
-            this.label7.Text = "Tanggal Kembali";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label8.Location = new System.Drawing.Point(978, 291);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(189, 32);
-            this.label8.TabIndex = 36;
-            this.label8.Text = "Tanggal Pinjam";
             // 
             // label9
             // 
@@ -208,7 +158,7 @@
             this.label9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label9.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label9.Location = new System.Drawing.Point(978, 202);
+            this.label9.Location = new System.Drawing.Point(642, 293);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(201, 32);
             this.label9.TabIndex = 35;
@@ -335,20 +285,6 @@
             this.pictureBox2.TabIndex = 48;
             this.pictureBox2.TabStop = false;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(984, 343);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(305, 26);
-            this.dateTimePicker1.TabIndex = 59;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(984, 433);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(305, 26);
-            this.dateTimePicker2.TabIndex = 60;
-            // 
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(1336, 343);
@@ -366,8 +302,6 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1828, 1144);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.pictureBox6);
@@ -380,14 +314,10 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnCari);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtTahunterbit);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtPengarangbuku);
+            this.Controls.Add(this.txtID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtJudulbuku);
             this.Controls.Add(this.txtNamapeminjam);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.label2);
@@ -414,14 +344,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtTahunterbit;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtPengarangbuku;
+        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtJudulbuku;
         private System.Windows.Forms.TextBox txtNamapeminjam;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnCari;
         private System.Windows.Forms.Label label13;
@@ -434,8 +360,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button btnClear;
     }
 }

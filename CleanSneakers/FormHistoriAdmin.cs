@@ -53,54 +53,41 @@ namespace CleanSneakers
         {
             try
             {
-                // Buka koneksi
                 koneksi.Open();
-
-                // Menggunakan nama tabel yang benar sesuai database
-                query = "SELECT id_peminjam, nama_peminjam, tanggal_pinjam,   tanggal_pinjam, tanggal_kembali,  tanggal_kembali, judul_buku FROM tbl_peminjaman"; // Mengubah nama tabel menjadi tbl_peminjam
+                query = string.Format("select * from tbl_peminjaman");
                 perintah = new MySqlCommand(query, koneksi);
                 adapter = new MySqlDataAdapter(perintah);
-
-                // Bersihkan dataset dan isi dengan data baru
+                perintah.ExecuteNonQuery();
                 ds.Clear();
                 adapter.Fill(ds);
-
-                // Tutup koneksi
                 koneksi.Close();
-
-                // Set DataSource DataGridView ke data yang sudah diambil
                 dataGridView1.DataSource = ds.Tables[0];
-
-                // Atur lebar dan judul kolom sesuai dengan kolom yang ada di database
-                dataGridView1.Columns[0].Width = 100;
-                dataGridView1.Columns[0].HeaderText = "ID Peminjam";
-
+                dataGridView1.Columns[0].Width = 120;
+                dataGridView1.Columns[0].HeaderText = "ID Peminjaman";
                 dataGridView1.Columns[1].Width = 150;
                 dataGridView1.Columns[1].HeaderText = "Nama Peminjam";
-
-                dataGridView1.Columns[2].Width = 120;
+                dataGridView1.Columns[2].Width = 150;
                 dataGridView1.Columns[2].HeaderText = "Tanggal Pinjam";
-
-                dataGridView1.Columns[3].Width = 120;
+                dataGridView1.Columns[3].Width = 150;
                 dataGridView1.Columns[3].HeaderText = "Tanggal Kembali";
-
-                dataGridView1.Columns[4].Width = 200;
+                dataGridView1.Columns[4].Width = 150;
                 dataGridView1.Columns[4].HeaderText = "Judul Buku";
 
-                // Bersihkan input text box (jika ada)
-                txtJudulbuku.Clear();
-                txtPengarangbuku.Clear();
-                txtTahunterbit.Clear();
-                txtNamapeminjam.Clear();
 
-                // Aktifkan tombol-tombol yang dibutuhkan
+
+                txtJudulbuku.Clear();
+                txtNamapeminjam.Clear();
+   
+        
+
+                btnHapus.Enabled = false;
+                btnClear.Enabled = false;
                 btnCari.Enabled = true;
-                btnPrint.Enabled = true;
+
             }
             catch (Exception ex)
             {
-                // Tampilkan pesan kesalahan jika ada masalah
-                MessageBox.Show("Terjadi kesalahan: " + ex.Message);
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -141,8 +128,7 @@ namespace CleanSneakers
                             // Clear the text fields after successful insertion
                             txtNamapeminjam.Text = "";
                             txtJudulbuku.Text = "";
-                            txtPengarangbuku.Text = "";
-                            txtTahunterbit.Text = "";
+
                         }
                         else
                         {
@@ -167,7 +153,7 @@ namespace CleanSneakers
             {
                 if (txtJudulbuku.Text != "")
                 {
-                    query = string.Format("select * from tbl_loginuser where judul_buku = '{0}'", txtJudulbuku.Text);
+                    query = string.Format("select * from tbl_peminjaman where judul_buku = '{0}'", txtJudulbuku.Text);
                     ds.Clear();
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
@@ -179,9 +165,9 @@ namespace CleanSneakers
                     {
                         foreach (DataRow kolom in ds.Tables[0].Rows)
                         {
-                            txtTahunterbit.Text = kolom["Tahun Terbit"].ToString();
+                         
                             txtJudulbuku.Text = kolom["Judul Buku"].ToString();
-                            txtPengarangbuku.Text = kolom["Pengarang Buku"].ToString();
+                    
 
                         }
                         txtJudulbuku.Enabled = true;
@@ -257,16 +243,35 @@ namespace CleanSneakers
         {
             try
             {
-                txtTahunterbit.Clear();
+              
                 txtJudulbuku.Clear();
                 txtNamapeminjam.Clear();
-                txtPengarangbuku.Clear();
                 FormHistoriAdmin_Load(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void txtPengarangbuku_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTahunterbit_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)

@@ -56,9 +56,9 @@ namespace CleanSneakers
         {
             try
             {
-                if (txtJudulbuku.Text != "")
+                if (txtNamapeminjam.Text != "")
                 {
-                    query = string.Format("select * from tbl_loginuser where judul_buku = '{0}'", txtJudulbuku.Text);
+                    query = string.Format("select * from tbl_peminjaman where nama_peminjam = '{0}'", txtNamapeminjam.Text);
                     ds.Clear();
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
@@ -70,14 +70,14 @@ namespace CleanSneakers
                     {
                         foreach (DataRow kolom in ds.Tables[0].Rows)
                         {
-                            txtTahunterbit.Text = kolom["Tahun Terbit"].ToString();
-                            txtJudulbuku.Text = kolom["Judul Buku"].ToString();
-                            txtPengarangbuku.Text = kolom["Pengarang Buku"].ToString();
+                            txtID.Text = kolom["id_peminjam"].ToString();
+                            txtJudulbuku.Text = kolom["judul_buku"].ToString();
+                            txtNamapeminjam.Text = kolom["nama_pengguna"].ToString();
+                            
 
                         }
-                        txtJudulbuku.Enabled = true;
+
                         dataGridView1.DataSource = ds.Tables[0];
-                        btnPrint.Enabled = true;
                         btnCari.Enabled = true;
                         btnClear.Enabled = true;
                     }
@@ -103,9 +103,6 @@ namespace CleanSneakers
         {
             try
             {
-                txtJudulbuku.Clear();
-                txtPengarangbuku.Clear();
-                txtTahunterbit.Clear();
                 FormHistori_Load(null, null);
             }
             catch (Exception ex)
@@ -118,54 +115,25 @@ namespace CleanSneakers
         {
             try
             {
-                // Buka koneksi
                 koneksi.Open();
-
-                // Menggunakan nama tabel yang benar sesuai database
-                query = "SELECT id_peminjam, nama_peminjam, tanggal_pinjam,   tanggal_pinjam, tanggal_kembali,  tanggal_kembali, judul_buku FROM tbl_peminjaman"; // Mengubah nama tabel menjadi tbl_peminjam
+                query = "SELECT * FROM tbl_peminjaman";
                 perintah = new MySqlCommand(query, koneksi);
                 adapter = new MySqlDataAdapter(perintah);
-
-                // Bersihkan dataset dan isi dengan data baru
                 ds.Clear();
                 adapter.Fill(ds);
-
-                // Tutup koneksi
                 koneksi.Close();
 
-                // Set DataSource DataGridView ke data yang sudah diambil
                 dataGridView1.DataSource = ds.Tables[0];
-
-                // Atur lebar dan judul kolom sesuai dengan kolom yang ada di database
-                dataGridView1.Columns[0].Width = 100;
-                dataGridView1.Columns[0].HeaderText = "ID Peminjam";
-
-                dataGridView1.Columns[1].Width = 150;
+                // Adjust column headers
+                dataGridView1.Columns[0].HeaderText = "ID Peminjaman";
                 dataGridView1.Columns[1].HeaderText = "Nama Peminjam";
-
-                dataGridView1.Columns[2].Width = 120;
                 dataGridView1.Columns[2].HeaderText = "Tanggal Pinjam";
-
-                dataGridView1.Columns[3].Width = 120;
                 dataGridView1.Columns[3].HeaderText = "Tanggal Kembali";
-
-                dataGridView1.Columns[4].Width = 200;
                 dataGridView1.Columns[4].HeaderText = "Judul Buku";
-
-                // Bersihkan input text box (jika ada)
-                txtJudulbuku.Clear();
-                txtPengarangbuku.Clear();
-                txtTahunterbit.Clear();
-                txtNamapeminjam.Clear();
-
-                // Aktifkan tombol-tombol yang dibutuhkan
-                btnCari.Enabled = true;
-                btnPrint.Enabled = true;
             }
             catch (Exception ex)
             {
-                // Tampilkan pesan kesalahan jika ada masalah
-                MessageBox.Show("Terjadi kesalahan: " + ex.Message);
+                MessageBox.Show(ex.ToString());
             }
         }
     }

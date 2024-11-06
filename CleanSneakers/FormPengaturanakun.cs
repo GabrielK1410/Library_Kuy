@@ -47,6 +47,40 @@ namespace CleanSneakers
 
         private void FormPengaturanakun_Load(object sender, EventArgs e)
         {
+            try
+            {
+                koneksi.Open();
+                query = string.Format("select * from tbl_loginuser");
+                perintah = new MySqlCommand(query, koneksi);
+                adapter = new MySqlDataAdapter(perintah);
+                perintah.ExecuteNonQuery();
+                ds.Clear();
+                adapter.Fill(ds);
+                koneksi.Close();
+                dataGridView1.DataSource = ds.Tables[0];
+                dataGridView1.Columns[0].Width = 100;
+                dataGridView1.Columns[0].HeaderText = "ID Pengguna";
+                dataGridView1.Columns[1].Width = 150;
+                dataGridView1.Columns[1].HeaderText = "Username";
+                dataGridView1.Columns[2].Width = 120;
+                dataGridView1.Columns[2].HeaderText = "Password";
+
+
+                txtIDbuku.Clear();
+                txtUsername.Clear();
+                txtPassword.Clear();
+                txtIDbuku.Focus();
+                btnUpdate.Enabled = false;
+                btnHapus.Enabled = false;
+                btnClear.Enabled = false;
+                btnTambah.Enabled = true;
+                btnCari.Enabled = true;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
         }
 

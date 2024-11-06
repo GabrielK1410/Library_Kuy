@@ -21,6 +21,7 @@ namespace CleanSneakers
         
         public FormAkunUser()
         {
+            
             alamat = "server=localhost; database=db_library; username=root; password=;";
             koneksi = new MySqlConnection(alamat);
             InitializeComponent();
@@ -54,40 +55,37 @@ namespace CleanSneakers
         {
             try
             {
-                if (txtPassword.Text != "" && txtUsername.Text != "")
+                // Validasi bahwa password tidak kosong
+                if (!string.IsNullOrEmpty(txtPassword.Text) && !string.IsNullOrEmpty(txtUsername.Text))
                 {
-                    query = string.Format("UPDATE tbl_loginuser SET password = '{0}', username = '{1}' WHERE id = '{2}'", txtPassword.Text, txtUsername.Text, txtIDbuku.Text);
+                    // Update data dengan username yang sebelumnya login
+                    query = $"UPDATE tbl_loginuser SET username = '{txtUsername.Text}', password = '{txtPassword.Text}' WHERE username = '{FormUserlogin.LoggedInUsername}'";
 
-                    using (MySqlCommand perintah = new MySqlCommand(query, koneksi))
+                    koneksi.Open();
+                    perintah = new MySqlCommand(query, koneksi);
+                    int result = perintah.ExecuteNonQuery();
+                    koneksi.Close();
+
+                    if (result == 1)
                     {
-                        if (koneksi.State == ConnectionState.Closed)
-                        {
-                            koneksi.Open();  // Open the connection only if it's closed
-                        }
+                        MessageBox.Show("Username dan Password berhasil diperbarui.");
 
-                        int res = perintah.ExecuteNonQuery();
-                        koneksi.Close();  // Close the connection immediately after executing the query
-                        btnCari.Enabled = true;
-
-                        if (res == 1)
-                        {
-                            MessageBox.Show("Edit Data Sukses ...");
-                            FormAkunUser_Load(null, null);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Gagal Edit Data ...");
-                        }
+                        // Setelah update, perbarui LoggedInUsername untuk sesi berikutnya
+                        FormUserlogin.LoggedInUsername = txtUsername.Text;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gagal memperbarui data.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Data Tidak Lengkap!");
+                    MessageBox.Show("Mohon isi username dan password baru.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error: " + ex.ToString());
             }
         }
 
@@ -95,49 +93,53 @@ namespace CleanSneakers
         {
             try
             {
-                if (txtUsername.Text != "")
+                if (!string.IsNullOrEmpty(txtUsername.Text))
                 {
-                    query = string.Format("select * from tbl_loginuser where username = '{0}'", txtUsername.Text);
+                    query = $"SELECT * FROM tbl_loginuser WHERE username = '{txtUsername.Text}'";
                     ds.Clear();
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
                     adapter = new MySqlDataAdapter(perintah);
-                    perintah.ExecuteNonQuery();
                     adapter.Fill(ds);
                     koneksi.Close();
+
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        foreach (DataRow kolom in ds.Tables[0].Rows)
-                        {
-                            txtIDbuku.Text = kolom["id"].ToString();
-                            txtPassword.Text = kolom["password"].ToString();
-                            txtUsername.Text = kolom["username"].ToString();
+                        DataRow kolom = ds.Tables[0].Rows[0];
+                        txtIDbuku.Text = kolom["id"].ToString();
+                        txtPassword.Text = kolom["password"].ToString();
+                        txtUsername.Text = kolom["username"].ToString();
 
-                        }
-                        txtUsername.Enabled = true;
                         dataGridView1.DataSource = ds.Tables[0];
+                        dataGridView1.Columns[0].Width = 120;
+                        dataGridView1.Columns[0].HeaderText = "ID";
+                        dataGridView1.Columns[1].Width = 150;
+                        dataGridView1.Columns[1].HeaderText = "Username";
+                        dataGridView1.Columns[2].Width = 150;
+                        dataGridView1.Columns[2].HeaderText = "Password";
+
                         btnUpdate.Enabled = true;
-                        btnCari.Enabled = false;
-                        btnClear.Enabled = true;
                         btnHapus.Enabled = true;
+                        btnClear.Enabled = true;
                     }
                     else
                     {
-                        MessageBox.Show("Data Tidak Ada !!");
+                        MessageBox.Show("Data Tidak Ada.");
                         FormAkunUser_Load(null, null);
                     }
-
                 }
                 else
                 {
-                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
+                    MessageBox.Show("Masukkan username untuk pencarian.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error: " + ex.ToString());
             }
         }
+
+
 
         private void btnHapus_Click(object sender, EventArgs e)
         {
@@ -208,23 +210,40 @@ namespace CleanSneakers
         {
             try
             {
-                // Query yang mem-filter data berdasarkan pengguna yang login
-                string query = string.Format("SELECT * FROM tbl_loginuser WHERE username = '{0}' && password = '{1}'", txtUsername.Text, txtPassword.Text);
-                DataSet ds = new DataSet();
-
-                // Buka koneksi, eksekusi query, dan masukkan hasilnya ke dalam DataGridView
                 koneksi.Open();
-                MySqlCommand perintah = new MySqlCommand(query, koneksi);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(perintah);
+
+                // Tampilkan hanya data akun pengguna yang sedang login
+                query = $"SELECT * FROM tbl_loginuser WHERE username = '{FormUserlogin.LoggedInUsername}'";
+
+                var perintah = new MySqlCommand(query, koneksi);
+                adapter = new MySqlDataAdapter(perintah);
+                ds.Clear();
                 adapter.Fill(ds);
                 koneksi.Close();
 
-                // Tampilkan data di DataGridView
-                dataGridView1.DataSource = ds.Tables[0];  // Pastikan ini adalah nama DataGridView yang benar
+                // Set DataGridView untuk menampilkan data yang diambil
+                dataGridView1.DataSource = ds.Tables[0];
+
+                // Mengatur lebar dan header kolom DataGridView
+                dataGridView1.Columns[0].Width = 120;
+                dataGridView1.Columns[0].HeaderText = "ID";
+                dataGridView1.Columns[1].Width = 150;
+                dataGridView1.Columns[1].HeaderText = "Username";
+                dataGridView1.Columns[2].Width = 150;
+                dataGridView1.Columns[2].HeaderText = "Password";
+
+                // Kosongkan dan nonaktifkan tombol yang tidak diperlukan
+                txtIDbuku.Clear();
+                txtUsername.Clear();
+                txtPassword.Clear();
+
+                btnCari.Enabled = true; // Nonaktifkan tombol Cari
+                btnHapus.Enabled = false; // Nonaktifkan tombol Hapus jika tidak diperlukan
+                btnClear.Enabled = true; // Nonaktifkan tombol Clear jika tidak diperlukan
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Terjadi kesalahan: " + ex.Message);
+                MessageBox.Show("Error: " + ex.ToString());
             }
         }
     }

@@ -15,8 +15,6 @@ namespace CleanSneakers
     public partial class FormUserlogin : Form
     {
         public static string LoggedInUsername;
-        public static string LoggedInPassword;
-
         private MySqlConnection koneksi;
         private MySqlDataAdapter adapter;
         private MySqlCommand perintah;
@@ -24,9 +22,11 @@ namespace CleanSneakers
         private string alamat, query;
         public FormUserlogin()
         {
+
             alamat = "server=localhost; database=db_library; username=root; password=;";
             koneksi = new MySqlConnection(alamat);
             InitializeComponent();
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -103,45 +103,46 @@ namespace CleanSneakers
         {
             try
             {
-                query = string.Format("select * from tbl_loginuser where username = '{0}'", txtUsername.Text);
-                ds.Clear();
-                koneksi.Open();
-                perintah = new MySqlCommand(query, koneksi);
-                adapter = new MySqlDataAdapter(perintah);
-                perintah.ExecuteNonQuery();
-                adapter.Fill(ds);
-                koneksi.Close();
-                if (ds.Tables[0].Rows.Count > 0)
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
+
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
                 {
-                    foreach (DataRow kolom in ds.Tables[0].Rows)
+                    string query = "SELECT * FROM tbl_loginuser WHERE username = @username AND password = @password";
+                    koneksi.Open();
+                    MySqlCommand perintah = new MySqlCommand(query, koneksi);
+                    perintah.Parameters.AddWithValue("@username", username);
+                    perintah.Parameters.AddWithValue("@password", password);
+                    MySqlDataReader reader = perintah.ExecuteReader();
+
+                    if (reader.HasRows)
                     {
-                        string sandi;
-                        sandi = kolom["password"].ToString();
-                        if (sandi == txtPassword.Text)
-                        {
-                            LoggedInUsername = txtUsername.Text;
-                            LoggedInPassword = txtPassword.Text;
+                        LoggedInUsername = username;  // Menyimpan username pengguna yang berhasil login
+                        MessageBox.Show("Login berhasil!");
+                        reader.Close();
+                        koneksi.Close();
 
-                            FormUsermain formUsermain = new FormUsermain();
-                            formUsermain.Show();
-                            this.Hide();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Anda salah input password");
-                        }
+                        // Buka form akun pengguna
+                        FormAkunUser formAkunUser = new FormAkunUser();
+                        formAkunUser.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username atau password salah.");
                     }
 
+                    reader.Close();
+                    koneksi.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Username tidak ditemukan");
+                    MessageBox.Show("Masukkan username dan password.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error: " + ex.ToString());
             }
         }
     }
