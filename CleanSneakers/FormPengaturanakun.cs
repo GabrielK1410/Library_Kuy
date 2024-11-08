@@ -72,7 +72,7 @@ namespace CleanSneakers
                 txtIDbuku.Focus();
                 btnUpdate.Enabled = false;
                 btnHapus.Enabled = false;
-                btnClear.Enabled = false;
+                btnClear.Enabled = true;
                 btnTambah.Enabled = true;
                 btnCari.Enabled = true;
 
@@ -163,7 +163,7 @@ namespace CleanSneakers
                     else
                     {
                         // Step 2: Insert the new account into the database
-                        string insertQuery = string.Format("INSERT INTO tbl_loginform (username, password) VALUES ('{0}', '{1}')", txtUsername.Text, txtPassword.Text);
+                        string insertQuery = string.Format("INSERT INTO tbl_loginuser (username, password) VALUES ('{0}', '{1}')", txtUsername.Text, txtPassword.Text);
 
                         koneksi.Open();
                         MySqlCommand insertCmd = new MySqlCommand(insertQuery, koneksi);

@@ -58,7 +58,7 @@ namespace CleanSneakers
             {
                 if (txtNamapeminjam.Text != "")
                 {
-                    query = string.Format("select * from tbl_peminjaman where nama_peminjam = '{0}'", txtNamapeminjam.Text);
+                    query = string.Format("SELECT * FROM tbl_peminjaman WHERE nama_peminjam = '{0}'", txtNamapeminjam.Text);
                     ds.Clear();
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
@@ -66,15 +66,14 @@ namespace CleanSneakers
                     perintah.ExecuteNonQuery();
                     adapter.Fill(ds);
                     koneksi.Close();
+
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         foreach (DataRow kolom in ds.Tables[0].Rows)
                         {
                             txtID.Text = kolom["id_peminjam"].ToString();
                             txtJudulbuku.Text = kolom["judul_buku"].ToString();
-                            txtNamapeminjam.Text = kolom["nama_pengguna"].ToString();
-                            
-
+                            txtNamapeminjam.Text = kolom["nama_peminjam"].ToString(); // Updated line
                         }
 
                         dataGridView1.DataSource = ds.Tables[0];
@@ -86,12 +85,42 @@ namespace CleanSneakers
                         MessageBox.Show("Data Tidak Ada !!");
                         FormHistori_Load(null, null);
                     }
+                }
+                if (txtJudulbuku.Text != "")
+                {
+                    query = string.Format("SELECT * FROM tbl_peminjaman WHERE judul_buku = '{0}'", txtJudulbuku.Text);
+                    ds.Clear();
+                    koneksi.Open();
+                    perintah = new MySqlCommand(query, koneksi);
+                    adapter = new MySqlDataAdapter(perintah);
+                    perintah.ExecuteNonQuery();
+                    adapter.Fill(ds);
+                    koneksi.Close();
 
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow kolom in ds.Tables[0].Rows)
+                        {
+                            txtID.Text = kolom["id_peminjam"].ToString();
+                            txtJudulbuku.Text = kolom["judul_buku"].ToString();
+                            txtNamapeminjam.Text = kolom["nama_peminjam"].ToString(); // Updated line
+                        }
+
+                        dataGridView1.DataSource = ds.Tables[0];
+                        btnCari.Enabled = true;
+                        btnClear.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data Tidak Ada !!");
+                        FormHistori_Load(null, null);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
                 }
+
             }
             catch (Exception ex)
             {
@@ -130,6 +159,13 @@ namespace CleanSneakers
                 dataGridView1.Columns[2].HeaderText = "Tanggal Pinjam";
                 dataGridView1.Columns[3].HeaderText = "Tanggal Kembali";
                 dataGridView1.Columns[4].HeaderText = "Judul Buku";
+
+                txtID.Clear();
+                txtJudulbuku.Clear();
+                txtNamapeminjam.Clear();
+                txtID.Focus();
+                btnClear.Enabled = true;
+
             }
             catch (Exception ex)
             {
