@@ -176,7 +176,45 @@ namespace CleanSneakers
 
         private void btnHapus_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (txtID.Text != "") // Pastikan ada ID yang akan dihapus
+                {
+                    // Konfirmasi sebelum menghapus data
+                    if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        query = string.Format("DELETE FROM tbl_peminjaman WHERE id_peminjaman = '{0}'", txtID.Text);
 
+                        if (koneksi.State == ConnectionState.Closed)
+                        {
+                            koneksi.Open(); // Buka koneksi sebelum menjalankan query
+                        }
+
+                        MySqlCommand perintah = new MySqlCommand(query, koneksi);
+                        int res = perintah.ExecuteNonQuery(); // Jalankan perintah delete
+                        koneksi.Close(); // Tutup koneksi setelah operasi
+
+                        if (res == 1) // Cek jika penghapusan berhasil
+                        {
+                            MessageBox.Show("Delete Data Sukses ...");
+                            FormHistoriAdmin_Load(null, null); // Reload form dan data
+                            btnHapus.Enabled = false; // Nonaktifkan tombol Delete setelah delete
+                        }
+                        else
+                        {
+                            MessageBox.Show("Gagal Delete Data");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada!!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

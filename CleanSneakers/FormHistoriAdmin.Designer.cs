@@ -43,7 +43,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnCari = new System.Windows.Forms.Button();
             this.btnHapus = new System.Windows.Forms.Button();
@@ -222,16 +221,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1149, 505);
             this.dataGridView1.TabIndex = 61;
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(1210, 358);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(185, 33);
-            this.btnUpdate.TabIndex = 93;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(1437, 358);
@@ -254,7 +243,7 @@
             // 
             // btnHapus
             // 
-            this.btnHapus.Location = new System.Drawing.Point(1210, 439);
+            this.btnHapus.Location = new System.Drawing.Point(1210, 358);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(185, 33);
             this.btnHapus.TabIndex = 90;
@@ -387,7 +376,6 @@
             this.Controls.Add(this.txtJudulbuku);
             this.Controls.Add(this.txtNamapeminjam);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCari);
             this.Controls.Add(this.btnHapus);
@@ -435,7 +423,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnCari;
         private System.Windows.Forms.Button btnHapus;
