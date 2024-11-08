@@ -53,6 +53,11 @@
             this.txtJudulbuku = new System.Windows.Forms.TextBox();
             this.txtNamapeminjam = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.dtpTanggalkembali = new System.Windows.Forms.DateTimePicker();
+            this.dtpTanggalpinjam = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnTambah = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -219,7 +224,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(1088, 398);
+            this.btnUpdate.Location = new System.Drawing.Point(1210, 358);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(185, 33);
             this.btnUpdate.TabIndex = 93;
@@ -229,7 +234,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(1315, 398);
+            this.btnClear.Location = new System.Drawing.Point(1437, 358);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(185, 33);
             this.btnClear.TabIndex = 92;
@@ -239,7 +244,7 @@
             // 
             // btnCari
             // 
-            this.btnCari.Location = new System.Drawing.Point(1315, 295);
+            this.btnCari.Location = new System.Drawing.Point(1437, 267);
             this.btnCari.Name = "btnCari";
             this.btnCari.Size = new System.Drawing.Size(185, 33);
             this.btnCari.TabIndex = 91;
@@ -249,7 +254,7 @@
             // 
             // btnHapus
             // 
-            this.btnHapus.Location = new System.Drawing.Point(1088, 295);
+            this.btnHapus.Location = new System.Drawing.Point(1210, 439);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(185, 33);
             this.btnHapus.TabIndex = 90;
@@ -274,7 +279,7 @@
             this.txtID.BackColor = System.Drawing.Color.OldLace;
             this.txtID.Location = new System.Drawing.Point(473, 446);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(473, 26);
+            this.txtID.Size = new System.Drawing.Size(136, 26);
             this.txtID.TabIndex = 98;
             // 
             // label3
@@ -294,7 +299,7 @@
             this.txtJudulbuku.BackColor = System.Drawing.Color.OldLace;
             this.txtJudulbuku.Location = new System.Drawing.Point(473, 267);
             this.txtJudulbuku.Name = "txtJudulbuku";
-            this.txtJudulbuku.Size = new System.Drawing.Size(473, 26);
+            this.txtJudulbuku.Size = new System.Drawing.Size(328, 26);
             this.txtJudulbuku.TabIndex = 96;
             // 
             // txtNamapeminjam
@@ -302,7 +307,7 @@
             this.txtNamapeminjam.BackColor = System.Drawing.Color.OldLace;
             this.txtNamapeminjam.Location = new System.Drawing.Point(473, 358);
             this.txtNamapeminjam.Name = "txtNamapeminjam";
-            this.txtNamapeminjam.Size = new System.Drawing.Size(473, 26);
+            this.txtNamapeminjam.Size = new System.Drawing.Size(328, 26);
             this.txtNamapeminjam.TabIndex = 95;
             // 
             // label9
@@ -317,12 +322,65 @@
             this.label9.TabIndex = 94;
             this.label9.Text = "Nama Peminjam";
             // 
+            // dtpTanggalkembali
+            // 
+            this.dtpTanggalkembali.Location = new System.Drawing.Point(841, 358);
+            this.dtpTanggalkembali.Name = "dtpTanggalkembali";
+            this.dtpTanggalkembali.Size = new System.Drawing.Size(305, 26);
+            this.dtpTanggalkembali.TabIndex = 103;
+            // 
+            // dtpTanggalpinjam
+            // 
+            this.dtpTanggalpinjam.Location = new System.Drawing.Point(841, 268);
+            this.dtpTanggalpinjam.Name = "dtpTanggalpinjam";
+            this.dtpTanggalpinjam.Size = new System.Drawing.Size(305, 26);
+            this.dtpTanggalpinjam.TabIndex = 102;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label7.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label7.Location = new System.Drawing.Point(835, 306);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(203, 32);
+            this.label7.TabIndex = 101;
+            this.label7.Text = "Tanggal Kembali";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label8.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label8.Location = new System.Drawing.Point(835, 216);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(189, 32);
+            this.label8.TabIndex = 100;
+            this.label8.Text = "Tanggal Pinjam";
+            // 
+            // btnTambah
+            // 
+            this.btnTambah.Location = new System.Drawing.Point(1210, 264);
+            this.btnTambah.Name = "btnTambah";
+            this.btnTambah.Size = new System.Drawing.Size(185, 33);
+            this.btnTambah.TabIndex = 104;
+            this.btnTambah.Text = "Tambah";
+            this.btnTambah.UseVisualStyleBackColor = true;
+            this.btnTambah.Click += new System.EventHandler(this.btnTambah_Click_1);
+            // 
             // FormHistoriAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1678, 1144);
+            this.Controls.Add(this.btnTambah);
+            this.Controls.Add(this.dtpTanggalkembali);
+            this.Controls.Add(this.dtpTanggalpinjam);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label3);
@@ -387,5 +445,10 @@
         private System.Windows.Forms.TextBox txtJudulbuku;
         private System.Windows.Forms.TextBox txtNamapeminjam;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker dtpTanggalkembali;
+        private System.Windows.Forms.DateTimePicker dtpTanggalpinjam;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnTambah;
     }
 }
