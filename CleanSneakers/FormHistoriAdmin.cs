@@ -122,6 +122,7 @@ namespace CleanSneakers
                         dataGridView1.DataSource = ds.Tables[0];
                         btnCari.Enabled = true;
                         btnClear.Enabled = true;
+                        btnHapus.Enabled = true;
                     }
                     else
                     {
@@ -156,6 +157,7 @@ namespace CleanSneakers
                         dataGridView1.DataSource = ds.Tables[0];
                         btnCari.Enabled = true;
                         btnClear.Enabled = true;
+                        btnHapus.Enabled = true;
                     }
                     else
                     {
@@ -178,27 +180,26 @@ namespace CleanSneakers
         {
             try
             {
-                if (txtID.Text != "") // Pastikan ada ID yang akan dihapus
+                if (txtID.Text != "")
                 {
-                    // Konfirmasi sebelum menghapus data
                     if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        query = string.Format("DELETE FROM tbl_peminjaman WHERE id_peminjaman = '{0}'", txtID.Text);
+                        query = string.Format("DELETE FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
 
                         if (koneksi.State == ConnectionState.Closed)
                         {
-                            koneksi.Open(); // Buka koneksi sebelum menjalankan query
+                            koneksi.Open();
                         }
 
                         MySqlCommand perintah = new MySqlCommand(query, koneksi);
-                        int res = perintah.ExecuteNonQuery(); // Jalankan perintah delete
-                        koneksi.Close(); // Tutup koneksi setelah operasi
+                        int res = perintah.ExecuteNonQuery();
+                        koneksi.Close();
 
-                        if (res == 1) // Cek jika penghapusan berhasil
+                        if (res == 1)
                         {
                             MessageBox.Show("Delete Data Sukses ...");
-                            FormHistoriAdmin_Load(null, null); // Reload form dan data
-                            btnHapus.Enabled = false; // Nonaktifkan tombol Delete setelah delete
+                            FormHistoriAdmin_Load(null, null);
+                            btnHapus.Enabled = false;
                         }
                         else
                         {
