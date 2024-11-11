@@ -10,16 +10,18 @@ using System.Windows.Forms;
 
 namespace CleanSneakers
 {
-    public partial class FormCRHistori : Form
+    public partial class FormCRakun : Form
     {
-        public FormCRHistori()
+        public FormCRakun()
         {
             InitializeComponent();
         }
 
-        private void crystalReportViewer1_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            CRakun1.SetParameterValue("akun_user",txtUsername.Text);
+            crystalReportViewer1.ReportSource = CRakun1;
+            crystalReportViewer1.Refresh();
         }
     }
 }

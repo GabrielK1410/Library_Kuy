@@ -1,6 +1,6 @@
 ﻿namespace CleanSneakers
 {
-    partial class FormCRhistori
+    partial class FormCRHistori
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.CRHistori2 = new CleanSneakers.CRHistori();
-            this.crHistori1 = new CleanSneakers.CRHistori();
+            this.CRhistori1 = new CleanSneakers.CRhistori();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -41,31 +40,26 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.CRHistori2;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1369, 565);
+            this.crystalReportViewer1.ReportSource = this.CRhistori1;
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1435, 591);
             this.crystalReportViewer1.TabIndex = 0;
+            this.crystalReportViewer1.Load += new System.EventHandler(this.crystalReportViewer1_Load);
             // 
-            // CRHistori2
-            // 
-            this.CRHistori2.InitReport += new System.EventHandler(this.CRHistori2_InitReport);
-            // 
-            // FormCRhistori
+            // FormCRHistori
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1369, 565);
+            this.ClientSize = new System.Drawing.Size(1435, 591);
             this.Controls.Add(this.crystalReportViewer1);
-            this.Name = "FormCRhistori";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormCRhistori";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Name = "FormCRHistori";
+            this.Text = "FormCRHistori";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private CRHistori CRHistori2;
-        private CRHistori crHistori1;
+        private CRhistori CRhistori1;
     }
 }

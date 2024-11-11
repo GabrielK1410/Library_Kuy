@@ -16,14 +16,14 @@ namespace CleanSneakers {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CRhistori : ReportClass {
+    public class CRakun : ReportClass {
         
-        public CRhistori() {
+        public CRakun() {
         }
         
         public override string ResourceName {
             get {
-                return "CRhistori.rpt";
+                return "CRakun.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace CleanSneakers {
         
         public override string FullResourceName {
             get {
-                return "CleanSneakers.CRhistori.rpt";
+                return "CleanSneakers.CRakun.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,20 @@ namespace CleanSneakers {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_akun_user {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCRhistori : Component, ICachedReport {
+    public class CachedCRakun : Component, ICachedReport {
         
-        public CachedCRhistori() {
+        public CachedCRakun() {
         }
         
         [Browsable(false)]
@@ -129,7 +137,7 @@ namespace CleanSneakers {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CRhistori rpt = new CRhistori();
+            CRakun rpt = new CRakun();
             rpt.Site = this.Site;
             return rpt;
         }

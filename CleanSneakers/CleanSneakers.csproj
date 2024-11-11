@@ -56,10 +56,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRHistori.cs">
+    <Compile Include="CRakun.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CRHistori.rpt</DependentUpon>
+      <DependentUpon>CRakun.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRhistori.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRhistori.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form1.cs">
@@ -86,11 +92,17 @@
     <Compile Include="FormAkunUser.Designer.cs">
       <DependentUpon>FormAkunUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCRhistori.cs">
+    <Compile Include="FormCRakun.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCRhistori.Designer.cs">
-      <DependentUpon>FormCRhistori.cs</DependentUpon>
+    <Compile Include="FormCRakun.Designer.cs">
+      <DependentUpon>FormCRakun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCRHistori.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCRHistori.Designer.cs">
+      <DependentUpon>FormCRHistori.cs</DependentUpon>
     </Compile>
     <Compile Include="FormHistori.cs">
       <SubType>Form</SubType>
@@ -130,9 +142,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CRHistori.rpt">
+    <EmbeddedResource Include="CRakun.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CRHistori.cs</LastGenOutput>
+      <LastGenOutput>CRakun.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRhistori.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRhistori.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -146,8 +162,11 @@
     <EmbeddedResource Include="FormAkunUser.resx">
       <DependentUpon>FormAkunUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCRhistori.resx">
-      <DependentUpon>FormCRhistori.cs</DependentUpon>
+    <EmbeddedResource Include="FormCRakun.resx">
+      <DependentUpon>FormCRakun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCRHistori.resx">
+      <DependentUpon>FormCRHistori.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHistori.resx">
       <DependentUpon>FormHistori.cs</DependentUpon>
