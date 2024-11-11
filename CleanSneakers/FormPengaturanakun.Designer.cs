@@ -53,6 +53,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -60,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -68,16 +71,17 @@
             this.label7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label7.Location = new System.Drawing.Point(600, 388);
+            this.label7.Location = new System.Drawing.Point(939, 192);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(105, 32);
+            this.label7.Size = new System.Drawing.Size(47, 32);
             this.label7.TabIndex = 54;
-            this.label7.Text = "ID Buku";
+            this.label7.Text = "ID ";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // txtIDbuku
             // 
             this.txtIDbuku.BackColor = System.Drawing.Color.OldLace;
-            this.txtIDbuku.Location = new System.Drawing.Point(606, 440);
+            this.txtIDbuku.Location = new System.Drawing.Point(945, 244);
             this.txtIDbuku.Name = "txtIDbuku";
             this.txtIDbuku.Size = new System.Drawing.Size(151, 26);
             this.txtIDbuku.TabIndex = 53;
@@ -190,11 +194,11 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(506, 540);
+            this.dataGridView1.Location = new System.Drawing.Point(506, 691);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1149, 560);
+            this.dataGridView1.Size = new System.Drawing.Size(1149, 409);
             this.dataGridView1.TabIndex = 40;
             // 
             // label13
@@ -319,12 +323,32 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Location = new System.Drawing.Point(606, 387);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(207, 208);
+            this.pictureBox7.TabIndex = 96;
+            this.pictureBox7.TabStop = false;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(1350, 634);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(305, 33);
+            this.btnPrint.TabIndex = 98;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormPengaturanakun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1828, 1144);
+            this.Controls.Add(this.btnPrint);
+            this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -359,6 +383,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -389,5 +414,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

@@ -32,7 +32,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -93,16 +92,6 @@
             this.label2.Size = new System.Drawing.Size(430, 128);
             this.label2.TabIndex = 32;
             this.label2.Text = "HISTORI";
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(1336, 543);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(288, 42);
-            this.btnPrint.TabIndex = 33;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.button1_Click);
             // 
             // label6
             // 
@@ -319,7 +308,6 @@
             this.Controls.Add(this.txtJudulbuku);
             this.Controls.Add(this.txtNamapeminjam);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
@@ -342,7 +330,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label3;
