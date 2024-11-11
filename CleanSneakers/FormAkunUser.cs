@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace CleanSneakers
 {
@@ -58,8 +60,22 @@ namespace CleanSneakers
                 // Validasi bahwa password tidak kosong
                 if (!string.IsNullOrEmpty(txtPassword.Text) && !string.IsNullOrEmpty(txtUsername.Text))
                 {
+                    string folderPath = Path.Combine(Application.StartupPath, "C:\\Users\\USER\\source\\repos\\CleanSneakers\\CleanSneakers\\Foto");
+
+                    // Pastikan folder ada, jika tidak, buat folder
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    // Membuat nama unik untuk file gambar agar tidak tertimpa
+                    string fileName = Guid.NewGuid().ToString() + ".jpg";
+                    string filePath = Path.Combine(folderPath, fileName);
+
+                    // Simpan gambar dari PictureBox ke folder
+                    pictureBox7.Image.Save(filePath);
                     // Update data dengan username yang sebelumnya login
-                    query = $"UPDATE tbl_loginuser SET username = '{txtUsername.Text}', password = '{txtPassword.Text}' WHERE username = '{FormUserlogin.LoggedInUsername}'";
+                    query = $"UPDATE tbl_loginuser SET username = '{txtUsername.Text}', password = '{txtPassword.Text}' , foto = '{fileName}' WHERE username = '{FormUserlogin.LoggedInUsername}'";
 
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
@@ -105,37 +121,49 @@ namespace CleanSneakers
 
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        DataRow kolom = ds.Tables[0].Rows[0];
-                        txtIDbuku.Text = kolom["id"].ToString();
-                        txtPassword.Text = kolom["password"].ToString();
-                        txtUsername.Text = kolom["username"].ToString();
+                        foreach (DataRow kolom in ds.Tables[0].Rows)
+                        {
+                            txtIDbuku.Text = kolom["id"].ToString();
+                            txtPassword.Text = kolom["password"].ToString();
+                            txtUsername.Text = kolom["username"].ToString();
+                            string fileName = kolom["foto"].ToString();
 
-                        dataGridView1.DataSource = ds.Tables[0];
-                        dataGridView1.Columns[0].Width = 120;
-                        dataGridView1.Columns[0].HeaderText = "ID";
-                        dataGridView1.Columns[1].Width = 150;
-                        dataGridView1.Columns[1].HeaderText = "Username";
-                        dataGridView1.Columns[2].Width = 150;
-                        dataGridView1.Columns[2].HeaderText = "Password";
+                            string folderPath = Path.Combine(Application.StartupPath, "C:\\Users\\USER\\source\\repos\\CleanSneakers\\CleanSneakers\\Foto");
+                            string filePath = Path.Combine(folderPath, fileName);
 
+                            // Cek apakah file foto ada
+                            if (File.Exists(filePath))
+                            {
+                                // Tampilkan gambar di PictureBox
+                                pictureBox7.Image = Image.FromFile(filePath);
+                                pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+                            }
+                            else
+                            {
+                                MessageBox.Show("File gambar tidak ditemukan.");
+                            }
+
+                        }
                         btnUpdate.Enabled = true;
                         btnHapus.Enabled = true;
                         btnClear.Enabled = true;
+                        LblFoto.Visible = false;
                     }
                     else
                     {
-                        MessageBox.Show("Data Tidak Ada.");
+                        MessageBox.Show("Data Tidak Ada !!");
                         FormAkunUser_Load(null, null);
                     }
+
                 }
                 else
                 {
-                    MessageBox.Show("Masukkan username untuk pencarian.");
+                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -206,6 +234,24 @@ namespace CleanSneakers
             this.Hide();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            LblFoto.Visible = false;
+        }
+
         private void FormAkunUser_Load(object sender, EventArgs e)
         {
             try
@@ -240,6 +286,8 @@ namespace CleanSneakers
                 btnCari.Enabled = true; // Nonaktifkan tombol Cari
                 btnHapus.Enabled = false; // Nonaktifkan tombol Hapus jika tidak diperlukan
                 btnClear.Enabled = true; // Nonaktifkan tombol Clear jika tidak diperlukan
+                pictureBox7.Image = null;
+                LblFoto.Visible = true;
             }
             catch (Exception ex)
             {

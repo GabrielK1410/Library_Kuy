@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPengaturanakun));
             this.label7 = new System.Windows.Forms.Label();
-            this.txtIDbuku = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnCari = new System.Windows.Forms.Button();
             this.btnHapus = new System.Windows.Forms.Button();
@@ -53,8 +53,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.LblFoto = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -78,13 +80,13 @@
             this.label7.Text = "ID ";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // txtIDbuku
+            // txtID
             // 
-            this.txtIDbuku.BackColor = System.Drawing.Color.OldLace;
-            this.txtIDbuku.Location = new System.Drawing.Point(945, 244);
-            this.txtIDbuku.Name = "txtIDbuku";
-            this.txtIDbuku.Size = new System.Drawing.Size(151, 26);
-            this.txtIDbuku.TabIndex = 53;
+            this.txtID.BackColor = System.Drawing.Color.OldLace;
+            this.txtID.Location = new System.Drawing.Point(945, 244);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(151, 26);
+            this.txtID.TabIndex = 53;
             // 
             // btnClear
             // 
@@ -302,6 +304,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 60;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox2
             // 
@@ -323,14 +326,6 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Location = new System.Drawing.Point(606, 387);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(207, 208);
-            this.pictureBox7.TabIndex = 96;
-            this.pictureBox7.TabStop = false;
-            // 
             // btnPrint
             // 
             this.btnPrint.Location = new System.Drawing.Point(1350, 634);
@@ -341,14 +336,34 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.button2_Click);
             // 
+            // LblFoto
+            // 
+            this.LblFoto.AutoSize = true;
+            this.LblFoto.Location = new System.Drawing.Point(720, 485);
+            this.LblFoto.Name = "LblFoto";
+            this.LblFoto.Size = new System.Drawing.Size(74, 20);
+            this.LblFoto.TabIndex = 100;
+            this.LblFoto.Text = "Pilih Foto";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox7.Location = new System.Drawing.Point(606, 387);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(305, 210);
+            this.pictureBox7.TabIndex = 99;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
+            // 
             // FormPengaturanakun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1828, 1144);
-            this.Controls.Add(this.btnPrint);
+            this.Controls.Add(this.LblFoto);
             this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -361,7 +376,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtIDbuku);
+            this.Controls.Add(this.txtID);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCari);
             this.Controls.Add(this.btnHapus);
@@ -391,7 +406,7 @@
 
         #endregion
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtIDbuku;
+        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnCari;
         private System.Windows.Forms.Button btnHapus;
@@ -414,7 +429,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Label LblFoto;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.FontDialog fontDialog1;
     }
 }

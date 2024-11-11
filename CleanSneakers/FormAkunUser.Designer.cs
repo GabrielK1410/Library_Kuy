@@ -52,6 +52,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.LblFoto = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -191,7 +193,7 @@
             this.label7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label7.Location = new System.Drawing.Point(598, 387);
+            this.label7.Location = new System.Drawing.Point(941, 191);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 32);
             this.label7.TabIndex = 83;
@@ -200,7 +202,7 @@
             // txtIDbuku
             // 
             this.txtIDbuku.BackColor = System.Drawing.Color.OldLace;
-            this.txtIDbuku.Location = new System.Drawing.Point(604, 439);
+            this.txtIDbuku.Location = new System.Drawing.Point(947, 243);
             this.txtIDbuku.Name = "txtIDbuku";
             this.txtIDbuku.Size = new System.Drawing.Size(151, 26);
             this.txtIDbuku.TabIndex = 82;
@@ -310,12 +312,32 @@
             this.dataGridView1.TabIndex = 71;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(1468, 614);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(185, 33);
+            this.btnPrint.TabIndex = 96;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // LblFoto
+            // 
+            this.LblFoto.AutoSize = true;
+            this.LblFoto.Location = new System.Drawing.Point(711, 500);
+            this.LblFoto.Name = "LblFoto";
+            this.LblFoto.Size = new System.Drawing.Size(74, 20);
+            this.LblFoto.TabIndex = 102;
+            this.LblFoto.Text = "Pilih Foto";
+            // 
             // pictureBox7
             // 
-            this.pictureBox7.Location = new System.Drawing.Point(604, 488);
+            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox7.Location = new System.Drawing.Point(604, 405);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(151, 143);
-            this.pictureBox7.TabIndex = 95;
+            this.pictureBox7.Size = new System.Drawing.Size(276, 201);
+            this.pictureBox7.TabIndex = 101;
             this.pictureBox7.TabStop = false;
             // 
             // FormAkunUser
@@ -323,8 +345,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1678, 1144);
+            this.ClientSize = new System.Drawing.Size(1828, 1144);
+            this.Controls.Add(this.LblFoto);
             this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -389,6 +413,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Label LblFoto;
         private System.Windows.Forms.PictureBox pictureBox7;
     }
 }

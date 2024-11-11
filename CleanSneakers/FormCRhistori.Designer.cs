@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.crHistori1 = new CleanSneakers.CRHistori();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.CRHistori2 = new CleanSneakers.CRHistori();
+            this.crHistori1 = new CleanSneakers.CRHistori();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -44,6 +44,10 @@
             this.crystalReportViewer1.ReportSource = this.CRHistori2;
             this.crystalReportViewer1.Size = new System.Drawing.Size(1369, 565);
             this.crystalReportViewer1.TabIndex = 0;
+            // 
+            // CRHistori2
+            // 
+            this.CRHistori2.InitReport += new System.EventHandler(this.CRHistori2_InitReport);
             // 
             // FormCRhistori
             // 
@@ -60,9 +64,8 @@
         }
 
         #endregion
-
-        private CRHistori crHistori1;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
         private CRHistori CRHistori2;
+        private CRHistori crHistori1;
     }
 }

@@ -1,6 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace CleanSneakers
 {
@@ -66,15 +67,17 @@ namespace CleanSneakers
                 dataGridView1.Columns[2].HeaderText = "Password";
 
 
-                txtIDbuku.Clear();
+                txtID.Clear();
                 txtUsername.Clear();
                 txtPassword.Clear();
-                txtIDbuku.Focus();
+                txtID.Focus();
                 btnUpdate.Enabled = false;
                 btnHapus.Enabled = false;
                 btnClear.Enabled = true;
                 btnTambah.Enabled = true;
                 btnCari.Enabled = true;
+                pictureBox7.Image = null;
+                LblFoto.Visible = true;
 
             }
             catch (Exception ex)
@@ -88,34 +91,45 @@ namespace CleanSneakers
         {
             try
             {
-                if (txtPassword.Text != "" && txtUsername.Text != "")
+                if (txtPassword.Text != "" && txtUsername.Text != "" && txtID.Text != "")
                 {
-                    query = string.Format("UPDATE tbl_loginuser SET password = '{0}', username = '{1}' WHERE id = '{2}'", txtPassword.Text, txtUsername.Text, txtIDbuku.Text);
+                    // Tentukan folder tempat menyimpan gambar
+                    string folderPath = Path.Combine(Application.StartupPath, "C:\\Users\\USER\\source\\repos\\CleanSneakers\\CleanSneakers\\Foto");
 
-                    using (MySqlCommand perintah = new MySqlCommand(query, koneksi))
+                    // Pastikan folder ada, jika tidak, buat folder
+                    if (!Directory.Exists(folderPath))
                     {
-                        if (koneksi.State == ConnectionState.Closed)
-                        {
-                            koneksi.Open();  // Open the connection only if it's closed
-                        }
+                        Directory.CreateDirectory(folderPath);
+                    }
 
-                        int res = perintah.ExecuteNonQuery();
-                        koneksi.Close();  // Close the connection immediately after executing the query
+                    // Membuat nama unik untuk file gambar agar tidak tertimpa
+                    string fileName = Guid.NewGuid().ToString() + ".jpg";
+                    string filePath = Path.Combine(folderPath, fileName);
 
-                        if (res == 1)
-                        {
-                            MessageBox.Show("Edit Data Sukses ...");
-                            FormPengaturanakun_Load(null, null);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Gagal Edit Data ...");
-                        }
+                    // Simpan gambar dari PictureBox ke folder
+                    pictureBox7.Image.Save(filePath);
+
+                    query = string.Format("update tbl_loginuser set password = '{0}', username = '{1}', foto = '{2}' where id = '{3}'", txtPassword.Text, txtUsername.Text, fileName, txtID.Text);
+
+
+                    koneksi.Open();
+                    perintah = new MySqlCommand(query, koneksi);
+                    adapter = new MySqlDataAdapter(perintah);
+                    int res = perintah.ExecuteNonQuery();
+                    koneksi.Close();
+                    if (res == 1)
+                    {
+                        MessageBox.Show("Update Data Suksess ...");
+                        FormPengaturanakun_Load(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gagal Update Data . . . ");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Data Tidak Lengkap!");
+                    MessageBox.Show("Data Tidak lengkap !!");
                 }
             }
             catch (Exception ex)
@@ -128,7 +142,7 @@ namespace CleanSneakers
         {
             try
             {
-                txtIDbuku.Clear();
+                txtID.Clear();
                 txtPassword.Clear();
                 txtUsername.Clear();
                 FormPengaturanakun_Load(null, null);
@@ -143,54 +157,50 @@ namespace CleanSneakers
         {
             try
             {
-                // Check if all necessary fields are filled
-                if (txtUsername.Text != "" && txtPassword.Text != "")
+                if (txtUsername.Text != "" && txtPassword.Text != "" )
                 {
-                    // Step 1: Check if the username already exists
-                    string checkQuery = string.Format("SELECT * FROM tbl_loginuser WHERE username = '{0}'", txtUsername.Text);
-                    DataSet dsCheck = new DataSet();
-                    koneksi.Open();
-                    MySqlCommand checkCmd = new MySqlCommand(checkQuery, koneksi);
-                    MySqlDataAdapter checkAdapter = new MySqlDataAdapter(checkCmd);
-                    checkAdapter.Fill(dsCheck);
-                    koneksi.Close();
+                    // Tentukan folder tempat menyimpan gambar
+                    string folderPath = Path.Combine(Application.StartupPath, "C:\\Users\\USER\\source\\repos\\CleanSneakers\\CleanSneakers\\Foto");
 
-                    if (dsCheck.Tables[0].Rows.Count > 0)
+                    // Pastikan folder ada, jika tidak, buat folder
+                    if (!Directory.Exists(folderPath))
                     {
-                        // If the username already exists, show a message
-                        MessageBox.Show("Username sudah terdaftar. Silakan gunakan username lain.");
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    // Membuat nama unik untuk file gambar agar tidak tertimpa
+                    string fileName = Guid.NewGuid().ToString() + ".jpg";
+                    string filePath = Path.Combine(folderPath, fileName);
+
+                    // Simpan gambar dari PictureBox ke folder
+                    pictureBox7.Image.Save(filePath);
+
+                    query = string.Format("insert into tbl_loginuser  values ('{0}','{1}','{2}','{3}');", txtID.Text, txtUsername.Text, txtPassword.Text, fileName);
+
+
+                    koneksi.Open();
+                    perintah = new MySqlCommand(query, koneksi);
+                    adapter = new MySqlDataAdapter(perintah);
+                    int res = perintah.ExecuteNonQuery();
+                    koneksi.Close();
+                    if (res == 1)
+                    {
+                        MessageBox.Show("Insert Data Suksess ...");
+                        FormPengaturanakun_Load(null, null);
                     }
                     else
                     {
-                        // Step 2: Insert the new account into the database
-                        string insertQuery = string.Format("INSERT INTO tbl_loginuser (username, password) VALUES ('{0}', '{1}')", txtUsername.Text, txtPassword.Text);
-
-                        koneksi.Open();
-                        MySqlCommand insertCmd = new MySqlCommand(insertQuery, koneksi);
-                        int result = insertCmd.ExecuteNonQuery(); // Execute the insert query
-                        koneksi.Close();
-
-                        if (result == 1) // If insert was successful
-                        {
-                            MessageBox.Show("Akun berhasil ditambahkan!");
-                            // Clear the text fields after successful insertion
-                            txtUsername.Text = "";
-                            txtPassword.Text = "";
-                        }
-                        else
-                        {
-                            MessageBox.Show("Gagal menambahkan akun.");
-                        }
+                        MessageBox.Show("Gagal inser Data . . . ");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Data tidak lengkap. Mohon lengkapi semua field.");
+                    MessageBox.Show("Data Tidak lengkap !!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -212,17 +222,34 @@ namespace CleanSneakers
                     {
                         foreach (DataRow kolom in ds.Tables[0].Rows)
                         {
-                            txtIDbuku.Text = kolom["id"].ToString();
+                            txtID.Text = kolom["id"].ToString();
                             txtPassword.Text = kolom["password"].ToString();
                             txtUsername.Text = kolom["username"].ToString();
+                            string fileName = kolom["foto"].ToString();
+
+                            string folderPath = Path.Combine(Application.StartupPath, "C:\\Users\\USER\\source\\repos\\CleanSneakers\\CleanSneakers\\Foto");
+                            string filePath = Path.Combine(folderPath, fileName);
+
+                            // Cek apakah file foto ada
+                            if (File.Exists(filePath))
+                            {
+                                // Tampilkan gambar di PictureBox
+                                pictureBox7.Image = Image.FromFile(filePath);
+                                pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+                            }
+                            else
+                            {
+                                MessageBox.Show("File gambar tidak ditemukan.");
+                            }
 
                         }
-                        txtUsername.Enabled = true;
-                        dataGridView1.DataSource = ds.Tables[0];
+
+
+                        btnTambah.Enabled = false;
                         btnUpdate.Enabled = true;
-                        btnCari.Enabled = false;
-                        btnClear.Enabled = true;
                         btnHapus.Enabled = true;
+                        btnClear.Enabled = true;
+                        LblFoto.Visible = false;
                     }
                     else
                     {
@@ -269,41 +296,53 @@ namespace CleanSneakers
 
         }
 
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox7.Image = Image.FromFile(openFileDialog1.FileName);
+                pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            LblFoto.Visible = false;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnHapus_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txtIDbuku.Text != "") // Pastikan ada ID yang akan dihapus
+                if (txtID.Text != "")
                 {
-                    // Konfirmasi sebelum menghapus data
                     if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        query = string.Format("DELETE FROM tbl_loginuser WHERE id = '{0}'", txtIDbuku.Text);
-
-                        if (koneksi.State == ConnectionState.Closed)
+                        query = string.Format("Delete from tbl_loginuser where id = '{0}'", txtID.Text);
+                        ds.Clear();
+                        koneksi.Open();
+                        perintah = new MySqlCommand(query, koneksi);
+                        adapter = new MySqlDataAdapter(perintah);
+                        int res = perintah.ExecuteNonQuery();
+                        koneksi.Close();
+                        if (res == 1)
                         {
-                            koneksi.Open(); // Buka koneksi sebelum menjalankan query
-                        }
-
-                        MySqlCommand perintah = new MySqlCommand(query, koneksi);
-                        int res = perintah.ExecuteNonQuery(); // Jalankan perintah delete
-                        koneksi.Close(); // Tutup koneksi setelah operasi
-
-                        if (res == 1) // Cek jika penghapusan berhasil
-                        {
-                            MessageBox.Show("Delete Data Sukses ...");
-                            FormPengaturanakun_Load(null, null); // Reload form dan data
-                            btnHapus.Enabled = false; // Nonaktifkan tombol Delete setelah delete
+                            MessageBox.Show("Delete Data Suksess ...");
                         }
                         else
                         {
-                            MessageBox.Show("Gagal Delete Data");
+                            MessageBox.Show("Gagal Delete data");
                         }
                     }
+                    FormPengaturanakun_Load(null, null);
                 }
                 else
                 {
-                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada!!");
+                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
                 }
             }
             catch (Exception ex)

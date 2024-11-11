@@ -16,5 +16,10 @@ namespace CleanSneakers
         {
             InitializeComponent();
         }
+
+        private void CRHistori2_InitReport(object sender, EventArgs e)
+        {
+
+        }
     }
 }
