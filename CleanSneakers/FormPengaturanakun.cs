@@ -293,7 +293,8 @@ namespace CleanSneakers
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            FormCRakun formCRakun = new FormCRakun();
+            formCRakun.Show();
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)

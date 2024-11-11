@@ -398,7 +398,7 @@ namespace CleanSneakers
         private void btnPrint_Click(object sender, EventArgs e)
         {
             FormCRHistori formCRhistori = new FormCRHistori();
-            formCRhistori.ShowDialog();
+            formCRhistori.Show();
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
