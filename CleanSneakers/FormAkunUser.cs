@@ -252,6 +252,19 @@ namespace CleanSneakers
             LblFoto.Visible = false;
         }
 
+        private void pictureBox7_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox7.Image = Image.FromFile(openFileDialog1.FileName);
+                pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            LblFoto.Visible = false;
+        }
+
         private void FormAkunUser_Load(object sender, EventArgs e)
         {
             try

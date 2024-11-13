@@ -52,7 +52,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.LblFoto = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -312,16 +311,6 @@
             this.dataGridView1.TabIndex = 71;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(1468, 614);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(185, 33);
-            this.btnPrint.TabIndex = 96;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.button1_Click);
-            // 
             // LblFoto
             // 
             this.LblFoto.AutoSize = true;
@@ -339,6 +328,7 @@
             this.pictureBox7.Size = new System.Drawing.Size(276, 201);
             this.pictureBox7.TabIndex = 101;
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click_1);
             // 
             // FormAkunUser
             // 
@@ -348,7 +338,6 @@
             this.ClientSize = new System.Drawing.Size(1828, 1144);
             this.Controls.Add(this.LblFoto);
             this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -413,7 +402,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label LblFoto;
         private System.Windows.Forms.PictureBox pictureBox7;
     }
