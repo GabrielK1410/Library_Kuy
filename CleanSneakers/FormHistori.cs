@@ -140,6 +140,48 @@ namespace CleanSneakers
             }
         }
 
+        private void btnHapus_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtID.Text != "")
+                {
+                    if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        query = string.Format("DELETE FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
+
+                        if (koneksi.State == ConnectionState.Closed)
+                        {
+                            koneksi.Open();
+                        }
+
+                        MySqlCommand perintah = new MySqlCommand(query, koneksi);
+                        int res = perintah.ExecuteNonQuery();
+                        koneksi.Close();
+
+                        if (res == 1)
+                        {
+                            MessageBox.Show("Delete Data Sukses ...");
+                            FormHistori_Load(null, null);
+                            btnHapus.Enabled = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Gagal Delete Data");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada!!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void FormHistori_Load(object sender, EventArgs e)
         {
             try
