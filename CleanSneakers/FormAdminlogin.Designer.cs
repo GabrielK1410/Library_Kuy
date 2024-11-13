@@ -157,6 +157,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "FormAdminlogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAdminlogin";
             this.Load += new System.EventHandler(this.FormAdminlogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();

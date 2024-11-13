@@ -425,7 +425,9 @@
             this.Controls.Add(this.pictureBox2);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormUsermain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormUsermain";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormUsermain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

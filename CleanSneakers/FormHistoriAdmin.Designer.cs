@@ -86,9 +86,10 @@
             this.label12.ForeColor = System.Drawing.Color.Cornsilk;
             this.label12.Location = new System.Drawing.Point(36, 318);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(182, 28);
+            this.label12.Size = new System.Drawing.Size(177, 28);
             this.label12.TabIndex = 85;
-            this.label12.Text = "Peminjaman Buku";
+            this.label12.Text = "Manajemen Buku";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // pictureBox6
             // 
@@ -395,7 +396,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormHistoriAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormHistoriAdmin";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormHistoriAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

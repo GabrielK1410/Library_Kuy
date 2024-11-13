@@ -389,7 +389,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormPengaturanakun";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormPengaturanakun";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormPengaturanakun_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();

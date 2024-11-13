@@ -401,6 +401,11 @@ namespace CleanSneakers
             formCRhistori.Show();
         }
 
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void pictureBox6_Click(object sender, EventArgs e)
         {
             FormAdminmain formAdminmain = new FormAdminmain();

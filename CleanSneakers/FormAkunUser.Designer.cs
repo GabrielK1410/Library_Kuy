@@ -362,7 +362,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormAkunUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAkunUser";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormAkunUser_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

@@ -191,7 +191,7 @@ namespace CleanSneakers
                 txtTahunterbit.Clear();
                 txtIDbuku.Focus();
                 btnHapus.Enabled = false;
-                btnClear.Enabled = false;
+                btnClear.Enabled = true;
                 btnTambah.Enabled = true;
                 btnCari.Enabled = true;
 
