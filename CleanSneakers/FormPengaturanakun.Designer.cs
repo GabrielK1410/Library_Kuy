@@ -57,6 +57,7 @@
             this.LblFoto = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.btnGanti = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -355,12 +356,23 @@
             this.pictureBox7.TabStop = false;
             this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
+            // btnGanti
+            // 
+            this.btnGanti.Location = new System.Drawing.Point(606, 616);
+            this.btnGanti.Name = "btnGanti";
+            this.btnGanti.Size = new System.Drawing.Size(185, 33);
+            this.btnGanti.TabIndex = 101;
+            this.btnGanti.Text = "Ganti Foto";
+            this.btnGanti.UseVisualStyleBackColor = true;
+            this.btnGanti.Click += new System.EventHandler(this.btnGanti_Click);
+            // 
             // FormPengaturanakun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1828, 1144);
+            this.Controls.Add(this.btnGanti);
             this.Controls.Add(this.LblFoto);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.btnPrint);
@@ -435,5 +447,6 @@
         private System.Windows.Forms.Label LblFoto;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.Button btnGanti;
     }
 }

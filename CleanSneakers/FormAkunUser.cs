@@ -148,6 +148,7 @@ namespace CleanSneakers
                         btnHapus.Enabled = true;
                         btnClear.Enabled = true;
                         LblFoto.Visible = false;
+                        btnGanti.Visible = true;
                     }
                     else
                     {
@@ -263,6 +264,20 @@ namespace CleanSneakers
                 pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             LblFoto.Visible = false;
+            btnGanti.Visible = true;
+        }
+
+        private void btnGanti_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox7.Image = Image.FromFile(openFileDialog1.FileName);
+                pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            LblFoto.Visible = false;
         }
 
         private void FormAkunUser_Load(object sender, EventArgs e)
@@ -301,6 +316,7 @@ namespace CleanSneakers
                 btnClear.Enabled = true; // Nonaktifkan tombol Clear jika tidak diperlukan
                 pictureBox7.Image = null;
                 LblFoto.Visible = true;
+                btnGanti.Visible = false;
             }
             catch (Exception ex)
             {

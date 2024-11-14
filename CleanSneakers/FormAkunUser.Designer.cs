@@ -54,6 +54,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.LblFoto = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.btnGanti = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -330,12 +331,23 @@
             this.pictureBox7.TabStop = false;
             this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click_1);
             // 
+            // btnGanti
+            // 
+            this.btnGanti.Location = new System.Drawing.Point(604, 623);
+            this.btnGanti.Name = "btnGanti";
+            this.btnGanti.Size = new System.Drawing.Size(185, 33);
+            this.btnGanti.TabIndex = 103;
+            this.btnGanti.Text = "Ganti Foto";
+            this.btnGanti.UseVisualStyleBackColor = true;
+            this.btnGanti.Click += new System.EventHandler(this.btnGanti_Click);
+            // 
             // FormAkunUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1828, 1144);
+            this.Controls.Add(this.btnGanti);
             this.Controls.Add(this.LblFoto);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.btnUpdate);
@@ -406,5 +418,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label LblFoto;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Button btnGanti;
     }
 }

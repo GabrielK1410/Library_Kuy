@@ -273,19 +273,20 @@ namespace CleanSneakers
         {
             try
             {
-                if (txtJudulbuku.Text != "" && txtPengarangbuku.Text != "")
+                if (txtJudulbuku.Text != "" && txtPengarangbuku.Text != "" && txtTahunterbit.Text != "")
                 {
-                    query = string.Format("UPDATE tbl_buku SET judul_buku = '{0}', pengarang = '{1}' WHERE id_buku = '{2}'", txtJudulbuku.Text, txtPengarangbuku.Text, txtIDbuku.Text);
+                    query = string.Format("UPDATE tbl_buku SET judul_buku = '{0}', pengarang = '{1}', tahun_terbit = '{2}' WHERE id_buku = '{3}'",
+                                          txtJudulbuku.Text, txtPengarangbuku.Text, txtTahunterbit.Text, txtIDbuku.Text);
 
                     using (MySqlCommand perintah = new MySqlCommand(query, koneksi))
                     {
                         if (koneksi.State == ConnectionState.Closed)
                         {
-                            koneksi.Open();  // Open the connection only if it's closed
+                            koneksi.Open();
                         }
 
                         int res = perintah.ExecuteNonQuery();
-                        koneksi.Close();  // Close the connection immediately after executing the query
+                        koneksi.Close();
 
                         if (res == 1)
                         {
