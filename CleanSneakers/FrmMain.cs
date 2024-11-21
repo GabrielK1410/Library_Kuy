@@ -70,14 +70,17 @@ namespace CleanSneakers
             {
                 if (txtJudulbuku.Text != "")
                 {
-                    query = string.Format("select * from tbl_buku where judul_buku = '{0}'", txtJudulbuku.Text);
+                    query = $"SELECT * FROM tbl_buku WHERE judul_buku = '{txtJudulbuku.Text}'";
                     ds.Clear();
-                    koneksi.Open();
+
+                    if (koneksi.State == ConnectionState.Closed) koneksi.Open(); // Pastikan koneksi tertutup sebelum dibuka
+
                     perintah = new MySqlCommand(query, koneksi);
                     adapter = new MySqlDataAdapter(perintah);
-                    perintah.ExecuteNonQuery();
                     adapter.Fill(ds);
-                    koneksi.Close();
+
+                    koneksi.Close(); // Tutup koneksi setelah selesai
+
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         foreach (DataRow kolom in ds.Tables[0].Rows)
@@ -85,8 +88,21 @@ namespace CleanSneakers
                             txtJudulbuku.Text = kolom["judul_buku"].ToString();
                             txtPengarangbuku.Text = kolom["pengarang"].ToString();
                             txtTahunterbit.Text = kolom["tahun_terbit"].ToString();
-
+                            txtStok.Text = kolom["stok_buku"].ToString();
+                            txtBatasPinjaman.Text = kolom["batas_peminjaman"].ToString();
+                            txtDenda.Text = kolom["denda"].ToString();
                         }
+
+                        dtpTanggalpinjam.Value = DateTime.Now;
+
+                        if (int.TryParse(txtBatasPinjaman.Text, out int batasHari))
+                        {
+                            dtpTanggalkembali.Value = dtpTanggalpinjam.Value.AddDays(batasHari);
+                        }
+
+                        dtpTanggalpinjam.Enabled = false;
+                        dtpTanggalkembali.Enabled = false;
+
                         txtJudulbuku.Enabled = true;
                         dataGridView1.DataSource = ds.Tables[0];
                         btnCari.Enabled = true;
@@ -98,16 +114,16 @@ namespace CleanSneakers
                         MessageBox.Show("Data Tidak Ada !!");
                         FormUsermain_Load(null, null);
                     }
-
                 }
                 else
                 {
-                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
+                    MessageBox.Show("Masukkan judul buku yang ingin dicari!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
+                if (koneksi.State == ConnectionState.Open) koneksi.Close(); // Tutup koneksi jika ada error
             }
         }
 
@@ -130,61 +146,57 @@ namespace CleanSneakers
 
         private void btnPinjam_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtNamapeminjam.Text) || string.IsNullOrWhiteSpace(txtJudulbuku.Text))
+            {
+                MessageBox.Show("Lengkapi semua data sebelum menyimpan!");
+                return;
+            }
+
             try
             {
-                // Check that all required fields are filled out
-                if (txtNamapeminjam.Text != "" && txtJudulbuku.Text != "")
+                if (koneksi.State == ConnectionState.Closed) koneksi.Open(); // Pastikan koneksi tertutup sebelum dibuka
+
+                // Cek stok
+                string cekStokQuery = "SELECT stok_buku FROM tbl_buku WHERE judul_buku = @judul";
+                perintah = new MySqlCommand(cekStokQuery, koneksi);
+                perintah.Parameters.AddWithValue("@judul", txtJudulbuku.Text);
+                int stok = Convert.ToInt32(perintah.ExecuteScalar());
+
+                if (stok > 0)
                 {
-                    // Get dates from DateTimePickers and format them for MySQL
-                    string formattedTanggalPinjam = dtpTanggalpinjam.Value.ToString("yyyy-MM-dd");
-                    string formattedTanggalKembali = dtpTanggalkembali.Value.ToString("yyyy-MM-dd");
+                    // Simpan data peminjaman
+                    string pinjamQuery = @"INSERT INTO tbl_peminjaman 
+                                   (nama_peminjam, tanggal_pinjam, tanggal_kembali, judul_buku, denda) 
+                                   VALUES (@nama, @pinjam, @kembali, @judul, @denda)";
+                    perintah = new MySqlCommand(pinjamQuery, koneksi);
+                    perintah.Parameters.AddWithValue("@nama", txtNamapeminjam.Text);
+                    perintah.Parameters.AddWithValue("@pinjam", dtpTanggalpinjam.Value.ToString("yyyy-MM-dd"));
+                    perintah.Parameters.AddWithValue("@kembali", dtpTanggalkembali.Value.ToString("yyyy-MM-dd"));
+                    perintah.Parameters.AddWithValue("@judul", txtJudulbuku.Text);
+                    perintah.Parameters.AddWithValue("@denda", txtDenda.Text); // Tambahkan denda
+                    perintah.ExecuteNonQuery();
 
-                    // Define the insert query
-                    string query = "INSERT INTO tbl_peminjaman (nama_peminjam, tanggal_pinjam, tanggal_kembali, judul_buku) " +
-                                   "VALUES (@NamaPeminjam, @TanggalPinjam, @TanggalKembali, @JudulBuku)";
+                    // Update stok
+                    string updateStokQuery = "UPDATE tbl_buku SET stok_buku = stok_buku - 1 WHERE judul_buku = @judul";
+                    perintah = new MySqlCommand(updateStokQuery, koneksi);
+                    perintah.Parameters.AddWithValue("@judul", txtJudulbuku.Text);
+                    perintah.ExecuteNonQuery();
 
-                    // Set up the MySQL connection and command
-                    using (MySqlConnection koneksi = new MySqlConnection("server=localhost; database=db_library; username=root; password=;"))
-                    using (MySqlCommand perintah = new MySqlCommand(query, koneksi))
-                    {
-                        // Add parameters to the command
-                        perintah.Parameters.AddWithValue("@NamaPeminjam", txtNamapeminjam.Text);
-                        perintah.Parameters.AddWithValue("@TanggalPinjam", formattedTanggalPinjam);
-                        perintah.Parameters.AddWithValue("@TanggalKembali", formattedTanggalKembali);
-                        perintah.Parameters.AddWithValue("@JudulBuku", txtJudulbuku.Text);
-
-                        // Open the connection and execute the command
-                        koneksi.Open();
-                        int res = perintah.ExecuteNonQuery();
-                        koneksi.Close();
-
-                        // Check if the insert operation was successful
-                        if (res == 1)
-                        {
-                            MessageBox.Show("Data berhasil ditambahkan.");
-                            // Optionally, reload the form or clear the input fields
-                            txtNamapeminjam.Clear();
-                            txtJudulbuku.Clear();
-                            txtPengarangbuku.Clear();
-                            txtTahunterbit.Clear();
-                            dtpTanggalpinjam.Value = DateTime.Now;
-                            dtpTanggalkembali.Value = DateTime.Now;
-                            txtNamapeminjam.Focus();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Gagal menambahkan data.");
-                        }
-                    }
+                    MessageBox.Show("Peminjaman berhasil!");
+                    FormUsermain_Load(null, null); // Memuat ulang data buku
                 }
                 else
                 {
-                    MessageBox.Show("Lengkapi semua data sebelum menyimpan!");
+                    MessageBox.Show("Stok buku habis!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Terjadi kesalahan: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                if (koneksi.State == ConnectionState.Open) koneksi.Close(); // Tutup koneksi
             }
         }
 
@@ -217,18 +229,30 @@ namespace CleanSneakers
 
         }
 
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            FormPengembalian formpengembalian = new FormPengembalian();
+            formpengembalian.Show();
+            this.Hide();
+        }
+
         private void FormUsermain_Load(object sender, EventArgs e)
         {
             try
             {
-                koneksi.Open();
-                query = string.Format("select * from tbl_buku");
+                if (koneksi.State == ConnectionState.Closed) koneksi.Open(); // Pastikan koneksi tertutup sebelum dibuka
+                query = "SELECT * FROM tbl_buku";
                 perintah = new MySqlCommand(query, koneksi);
                 adapter = new MySqlDataAdapter(perintah);
                 perintah.ExecuteNonQuery();
                 ds.Clear();
                 adapter.Fill(ds);
-                koneksi.Close();
+                koneksi.Close(); // Tutup koneksi setelah selesai
                 dataGridView1.DataSource = ds.Tables[0];
                 dataGridView1.Columns[0].Width = 100;
                 dataGridView1.Columns[0].HeaderText = "ID Buku";
@@ -238,21 +262,36 @@ namespace CleanSneakers
                 dataGridView1.Columns[2].HeaderText = "Pengarang Buku";
                 dataGridView1.Columns[3].Width = 120;
                 dataGridView1.Columns[3].HeaderText = "Tahun Terbit";
+                dataGridView1.Columns[4].Width = 120;
+                dataGridView1.Columns[4].HeaderText = "Stok";
+                dataGridView1.Columns[5].Width = 120;
+                dataGridView1.Columns[5].HeaderText = "Batas Harian Peminjaman";
+                dataGridView1.Columns[6].Width = 120;
+                dataGridView1.Columns[6].HeaderText = "Denda";
 
 
                 txtID.Clear();
                 txtJudulbuku.Clear();
                 txtPengarangbuku.Clear();
                 txtTahunterbit.Clear();
-                txtID.Focus();     
+                txtBatasPinjaman.Clear();
+                txtNamapeminjam.Clear();  
+                txtDenda.Clear();
+                txtStok.Clear();
+                dtpTanggalkembali.Enabled = true;
+                dtpTanggalpinjam.Enabled = true;
+                txtID.Focus();
                 btnClear.Enabled = true;
                 btnPinjam.Enabled = true;
                 btnCari.Enabled = true;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                if (koneksi.State == ConnectionState.Open) koneksi.Close(); // Tutup koneksi jika terbuka
             }
         }
     }

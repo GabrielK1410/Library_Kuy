@@ -50,6 +50,9 @@ namespace CleanSneakers
                             txtJudulbuku.Text = kolom["judul_buku"].ToString();
                             txtPengarangbuku.Text = kolom["pengarang"].ToString();
                             txtTahunterbit.Text = kolom["tahun_terbit"].ToString();
+                            txtStok.Text = kolom["stok_buku"].ToString() ;
+                            txtBatasPinjaman.Text = kolom["batas_peminjaman"].ToString() ;
+                            txtDenda.Text = kolom["denda"].ToString();
 
                         }
                         txtJudulbuku.Enabled = true;
@@ -64,7 +67,6 @@ namespace CleanSneakers
                         MessageBox.Show("Data Tidak Ada !!");
                         FormAdminmain_Load(null, null);
                     }
-
                 }
                 else
                 {
@@ -81,30 +83,32 @@ namespace CleanSneakers
         {
             try
             {
-                if (txtJudulbuku.Text != "" && txtPengarangbuku.Text != "" && txtTahunterbit.Text != "")
+                if (txtJudulbuku.Text != "" && txtPengarangbuku.Text != "" && txtTahunterbit.Text != "" &&
+                    txtStok.Text != "" && txtDenda.Text != "" && txtBatasPinjaman.Text != "")
                 {
-
-                    query = string.Format("insert into tbl_buku  values ('{0}','{1}','{2}','{3}');", txtIDbuku.Text, txtJudulbuku.Text, txtPengarangbuku.Text, txtTahunterbit.Text);
-
+                    query = string.Format("INSERT INTO tbl_buku (judul_buku, pengarang, tahun_terbit, stok_buku, denda, batas_peminjaman) " +
+                                          "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+                                          txtJudulbuku.Text, txtPengarangbuku.Text, txtTahunterbit.Text,
+                                          txtStok.Text, txtDenda.Text, txtBatasPinjaman.Text);
 
                     koneksi.Open();
                     perintah = new MySqlCommand(query, koneksi);
-                    adapter = new MySqlDataAdapter(perintah);
                     int res = perintah.ExecuteNonQuery();
                     koneksi.Close();
+
                     if (res == 1)
                     {
-                        MessageBox.Show("Insert Data Suksess ...");
+                        MessageBox.Show("Data berhasil ditambahkan.");
                         FormAdminmain_Load(null, null);
                     }
                     else
                     {
-                        MessageBox.Show("Gagal inser Data . . . ");
+                        MessageBox.Show("Gagal menambahkan data.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Data Tidak lengkap !!");
+                    MessageBox.Show("Data tidak lengkap!");
                 }
             }
             catch (Exception ex)
@@ -119,29 +123,29 @@ namespace CleanSneakers
             {
                 if (txtIDbuku.Text != "")
                 {
-                    if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("Anda yakin ingin menghapus data ini?", "Konfirmasi", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        query = string.Format("Delete from tbl_buku where id_buku = '{0}'", txtIDbuku.Text);
-                        ds.Clear();
+                        query = string.Format("DELETE FROM tbl_buku WHERE id_buku = '{0}'", txtIDbuku.Text);
+
                         koneksi.Open();
                         perintah = new MySqlCommand(query, koneksi);
-                        adapter = new MySqlDataAdapter(perintah);
                         int res = perintah.ExecuteNonQuery();
                         koneksi.Close();
+
                         if (res == 1)
                         {
-                            MessageBox.Show("Delete Data Suksess ...");
+                            MessageBox.Show("Data berhasil dihapus.");
+                            FormAdminmain_Load(null, null);
                         }
                         else
                         {
-                            MessageBox.Show("Gagal Delete data");
+                            MessageBox.Show("Gagal menghapus data.");
                         }
                     }
-                    FormAdminmain_Load(null, null);
                 }
                 else
                 {
-                    MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
+                    MessageBox.Show("Silakan pilih data untuk dihapus.");
                 }
             }
             catch (Exception ex)
@@ -167,28 +171,29 @@ namespace CleanSneakers
             try
             {
                 koneksi.Open();
-                query = string.Format("select * from tbl_buku");
+                query = "SELECT * FROM tbl_buku";
                 perintah = new MySqlCommand(query, koneksi);
                 adapter = new MySqlDataAdapter(perintah);
-                perintah.ExecuteNonQuery();
                 ds.Clear();
                 adapter.Fill(ds);
                 koneksi.Close();
+
                 dataGridView1.DataSource = ds.Tables[0];
-                dataGridView1.Columns[0].Width = 120;
                 dataGridView1.Columns[0].HeaderText = "ID Buku";
-                dataGridView1.Columns[1].Width = 150;
                 dataGridView1.Columns[1].HeaderText = "Judul Buku";
-                dataGridView1.Columns[2].Width = 150;
-                dataGridView1.Columns[2].HeaderText = "Pengarang Buku";
-                dataGridView1.Columns[3].Width = 150;
+                dataGridView1.Columns[2].HeaderText = "Pengarang";
                 dataGridView1.Columns[3].HeaderText = "Tahun Terbit";
-               
+                dataGridView1.Columns[4].HeaderText = "Stok Buku";
+                dataGridView1.Columns[5].HeaderText = "Batas Peminjaman";
+                dataGridView1.Columns[6].HeaderText = "Denda";
 
                 txtIDbuku.Clear();
                 txtJudulbuku.Clear();
                 txtPengarangbuku.Clear();
                 txtTahunterbit.Clear();
+                txtStok.Clear();
+                txtDenda.Clear();
+                txtBatasPinjaman.Clear();
                 txtIDbuku.Focus();
                 btnHapus.Enabled = false;
                 btnClear.Enabled = true;
@@ -273,41 +278,46 @@ namespace CleanSneakers
         {
             try
             {
-                if (txtJudulbuku.Text != "" && txtPengarangbuku.Text != "" && txtTahunterbit.Text != "")
+                if (txtJudulbuku.Text != "" && txtPengarangbuku.Text != "" && txtTahunterbit.Text != "" &&
+                    txtStok.Text != "" && txtDenda.Text != "" && txtBatasPinjaman.Text != "" && txtIDbuku.Text != "")
                 {
-                    query = string.Format("UPDATE tbl_buku SET judul_buku = '{0}', pengarang = '{1}', tahun_terbit = '{2}' WHERE id_buku = '{3}'",
-                                          txtJudulbuku.Text, txtPengarangbuku.Text, txtTahunterbit.Text, txtIDbuku.Text);
+                    query = string.Format("UPDATE tbl_buku SET judul_buku = '{0}', pengarang = '{1}', tahun_terbit = '{2}', " +
+                                          "stok_buku = '{3}', batas_peminjaman = '{4}', denda = '{5}' " +
+                                          "WHERE id_buku = '{6}'",
+                                          txtJudulbuku.Text, txtPengarangbuku.Text, txtTahunterbit.Text,
+                                          txtStok.Text, txtBatasPinjaman.Text, txtDenda.Text, txtIDbuku.Text);
 
-                    using (MySqlCommand perintah = new MySqlCommand(query, koneksi))
+                    koneksi.Open();
+                    perintah = new MySqlCommand(query, koneksi);
+                    int res = perintah.ExecuteNonQuery();
+                    koneksi.Close();
+
+                    if (res == 1)
                     {
-                        if (koneksi.State == ConnectionState.Closed)
-                        {
-                            koneksi.Open();
-                        }
-
-                        int res = perintah.ExecuteNonQuery();
-                        koneksi.Close();
-
-                        if (res == 1)
-                        {
-                            MessageBox.Show("Edit Data Sukses ...");
-                            FormAdminmain_Load(null, null);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Gagal Edit Data ...");
-                        }
+                        MessageBox.Show("Data berhasil diperbarui.");
+                        FormAdminmain_Load(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gagal memperbarui data.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Data Tidak Lengkap!");
+                    MessageBox.Show("Data tidak lengkap!");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

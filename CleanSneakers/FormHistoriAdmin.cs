@@ -164,6 +164,43 @@ namespace CleanSneakers
                         MessageBox.Show("Data Tidak Ada !!");
                         FormHistoriAdmin_Load(null, null);
                     }
+
+                }
+                else if (txtID.Text != "")
+                {
+                    query = string.Format("SELECT * FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
+                    ds.Clear();
+                    koneksi.Open();
+                    perintah = new MySqlCommand(query, koneksi);
+                    adapter = new MySqlDataAdapter(perintah);
+                    perintah.ExecuteNonQuery();
+                    adapter.Fill(ds);
+                    koneksi.Close();
+
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow kolom in ds.Tables[0].Rows)
+                        {
+                            txtID.Text = kolom["id_peminjam"].ToString();
+                            txtJudulbuku.Text = kolom["judul_buku"].ToString();
+                            txtNamapeminjam.Text = kolom["nama_peminjam"].ToString();
+
+                            // Set the DateTimePickers with values from the database
+                            dtpTanggalpinjam.Value = Convert.ToDateTime(kolom["tanggal_pinjam"]);
+                            dtpTanggalkembali.Value = Convert.ToDateTime(kolom["tanggal_kembali"]);
+                        }
+
+                        dataGridView1.DataSource = ds.Tables[0];
+                        btnCari.Enabled = true;
+                        btnClear.Enabled = true;
+                        btnHapus.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data Tidak Ada !!");
+                        FormHistoriAdmin_Load(null, null);
+                    }
+
                 }
                 else
                 {
@@ -184,27 +221,40 @@ namespace CleanSneakers
                 {
                     if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        query = string.Format("DELETE FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
+                        koneksi.Open();
 
-                        if (koneksi.State == ConnectionState.Closed)
+                        // Ambil judul buku yang akan dihapus
+                        string judulBuku = "";
+                        query = string.Format("SELECT judul_buku FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
+                        perintah = new MySqlCommand(query, koneksi);
+                        var result = perintah.ExecuteScalar();
+                        if (result != null)
                         {
-                            koneksi.Open();
+                            judulBuku = result.ToString();
                         }
 
-                        MySqlCommand perintah = new MySqlCommand(query, koneksi);
+                        // Hapus data dari tbl_peminjaman
+                        query = string.Format("DELETE FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
+                        perintah = new MySqlCommand(query, koneksi);
                         int res = perintah.ExecuteNonQuery();
-                        koneksi.Close();
 
-                        if (res == 1)
+                        // Jika berhasil menghapus, tambahkan stok buku
+                        if (res == 1 && !string.IsNullOrEmpty(judulBuku))
                         {
-                            MessageBox.Show("Delete Data Sukses ...");
-                            FormHistoriAdmin_Load(null, null);
-                            btnHapus.Enabled = false;
+                            query = string.Format("UPDATE tbl_buku SET stok_buku = stok_buku + 1 WHERE judul_buku = '{0}'", judulBuku);
+                            perintah = new MySqlCommand(query, koneksi);
+                            perintah.ExecuteNonQuery();
+
+                            MessageBox.Show("Peminjaman berhasil dihapus, stok buku telah diperbarui.");
                         }
                         else
                         {
-                            MessageBox.Show("Gagal Delete Data");
+                            MessageBox.Show("Gagal menghapus peminjaman.");
                         }
+
+                        koneksi.Close();
+                        FormHistoriAdmin_Load(null, null);
+                        btnHapus.Enabled = false;
                     }
                 }
                 else

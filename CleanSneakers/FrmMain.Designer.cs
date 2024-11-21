@@ -59,6 +59,16 @@
             this.label14 = new System.Windows.Forms.Label();
             this.dtpTanggalpinjam = new System.Windows.Forms.DateTimePicker();
             this.dtpTanggalkembali = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtStok = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtBatasPinjaman = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtDenda = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -66,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox2
@@ -105,7 +116,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(486, 568);
+            this.dataGridView1.Location = new System.Drawing.Point(486, 589);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
@@ -118,7 +129,7 @@
             this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label3.Location = new System.Drawing.Point(480, 516);
+            this.label3.Location = new System.Drawing.Point(480, 537);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 32);
             this.label3.TabIndex = 6;
@@ -130,7 +141,7 @@
             this.label7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label7.Location = new System.Drawing.Point(848, 375);
+            this.label7.Location = new System.Drawing.Point(816, 341);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(203, 32);
             this.label7.TabIndex = 19;
@@ -142,7 +153,7 @@
             this.label8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label8.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label8.Location = new System.Drawing.Point(848, 285);
+            this.label8.Location = new System.Drawing.Point(816, 251);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(189, 32);
             this.label8.TabIndex = 17;
@@ -154,7 +165,7 @@
             this.label9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label9.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label9.Location = new System.Drawing.Point(848, 196);
+            this.label9.Location = new System.Drawing.Point(816, 162);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(201, 32);
             this.label9.TabIndex = 15;
@@ -163,7 +174,7 @@
             // txtNamapeminjam
             // 
             this.txtNamapeminjam.BackColor = System.Drawing.Color.OldLace;
-            this.txtNamapeminjam.Location = new System.Drawing.Point(854, 248);
+            this.txtNamapeminjam.Location = new System.Drawing.Point(822, 214);
             this.txtNamapeminjam.Name = "txtNamapeminjam";
             this.txtNamapeminjam.Size = new System.Drawing.Size(305, 26);
             this.txtNamapeminjam.TabIndex = 21;
@@ -171,7 +182,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(51, 387);
+            this.pictureBox3.Location = new System.Drawing.Point(51, 539);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(148, 121);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -185,7 +196,7 @@
             this.label10.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.label10.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label10.Location = new System.Drawing.Point(30, 511);
+            this.label10.Location = new System.Drawing.Point(30, 663);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(198, 28);
             this.label10.TabIndex = 24;
@@ -227,7 +238,7 @@
             this.label6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label6.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label6.Location = new System.Drawing.Point(512, 375);
+            this.label6.Location = new System.Drawing.Point(480, 341);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(155, 32);
             this.label6.TabIndex = 34;
@@ -236,7 +247,7 @@
             // txtTahunterbit
             // 
             this.txtTahunterbit.BackColor = System.Drawing.Color.OldLace;
-            this.txtTahunterbit.Location = new System.Drawing.Point(518, 427);
+            this.txtTahunterbit.Location = new System.Drawing.Point(486, 393);
             this.txtTahunterbit.Name = "txtTahunterbit";
             this.txtTahunterbit.Size = new System.Drawing.Size(305, 26);
             this.txtTahunterbit.TabIndex = 33;
@@ -247,7 +258,7 @@
             this.label5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label5.Location = new System.Drawing.Point(512, 285);
+            this.label5.Location = new System.Drawing.Point(480, 251);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(202, 32);
             this.label5.TabIndex = 32;
@@ -256,7 +267,7 @@
             // txtPengarangbuku
             // 
             this.txtPengarangbuku.BackColor = System.Drawing.Color.OldLace;
-            this.txtPengarangbuku.Location = new System.Drawing.Point(518, 337);
+            this.txtPengarangbuku.Location = new System.Drawing.Point(486, 303);
             this.txtPengarangbuku.Name = "txtPengarangbuku";
             this.txtPengarangbuku.Size = new System.Drawing.Size(305, 26);
             this.txtPengarangbuku.TabIndex = 31;
@@ -267,7 +278,7 @@
             this.label4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label4.Location = new System.Drawing.Point(512, 196);
+            this.label4.Location = new System.Drawing.Point(480, 162);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(142, 32);
             this.label4.TabIndex = 30;
@@ -276,7 +287,7 @@
             // txtJudulbuku
             // 
             this.txtJudulbuku.BackColor = System.Drawing.Color.OldLace;
-            this.txtJudulbuku.Location = new System.Drawing.Point(518, 248);
+            this.txtJudulbuku.Location = new System.Drawing.Point(486, 214);
             this.txtJudulbuku.Name = "txtJudulbuku";
             this.txtJudulbuku.Size = new System.Drawing.Size(305, 26);
             this.txtJudulbuku.TabIndex = 29;
@@ -287,7 +298,7 @@
             this.label11.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.label11.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label11.Location = new System.Drawing.Point(75, 1001);
+            this.label11.Location = new System.Drawing.Point(75, 1060);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(97, 28);
             this.label11.TabIndex = 38;
@@ -296,7 +307,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(51, 877);
+            this.pictureBox4.Location = new System.Drawing.Point(51, 936);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(148, 121);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -307,7 +318,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(51, 589);
+            this.pictureBox5.Location = new System.Drawing.Point(51, 741);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(148, 121);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -345,7 +356,7 @@
             this.label13.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.label13.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label13.Location = new System.Drawing.Point(38, 713);
+            this.label13.Location = new System.Drawing.Point(38, 865);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(175, 28);
             this.label13.TabIndex = 42;
@@ -354,7 +365,7 @@
             // txtID
             // 
             this.txtID.BackColor = System.Drawing.Color.OldLace;
-            this.txtID.Location = new System.Drawing.Point(1192, 248);
+            this.txtID.Location = new System.Drawing.Point(1178, 214);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(172, 26);
             this.txtID.TabIndex = 44;
@@ -366,7 +377,7 @@
             this.label14.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label14.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label14.Location = new System.Drawing.Point(1186, 196);
+            this.label14.Location = new System.Drawing.Point(1172, 162);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(189, 32);
             this.label14.TabIndex = 43;
@@ -375,17 +386,120 @@
             // 
             // dtpTanggalpinjam
             // 
-            this.dtpTanggalpinjam.Location = new System.Drawing.Point(854, 337);
+            this.dtpTanggalpinjam.Location = new System.Drawing.Point(822, 303);
             this.dtpTanggalpinjam.Name = "dtpTanggalpinjam";
             this.dtpTanggalpinjam.Size = new System.Drawing.Size(305, 26);
             this.dtpTanggalpinjam.TabIndex = 45;
             // 
             // dtpTanggalkembali
             // 
-            this.dtpTanggalkembali.Location = new System.Drawing.Point(854, 427);
+            this.dtpTanggalkembali.Location = new System.Drawing.Point(822, 393);
             this.dtpTanggalkembali.Name = "dtpTanggalkembali";
             this.dtpTanggalkembali.Size = new System.Drawing.Size(305, 26);
             this.dtpTanggalkembali.TabIndex = 46;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label1.Location = new System.Drawing.Point(476, 433);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 32);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Stok Buku";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // txtStok
+            // 
+            this.txtStok.BackColor = System.Drawing.Color.OldLace;
+            this.txtStok.Location = new System.Drawing.Point(482, 474);
+            this.txtStok.Name = "txtStok";
+            this.txtStok.Size = new System.Drawing.Size(153, 26);
+            this.txtStok.TabIndex = 47;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label15.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label15.Location = new System.Drawing.Point(816, 433);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(272, 32);
+            this.label15.TabIndex = 104;
+            this.label15.Text = "Batas Harian Pinjaman";
+            // 
+            // txtBatasPinjaman
+            // 
+            this.txtBatasPinjaman.BackColor = System.Drawing.Color.OldLace;
+            this.txtBatasPinjaman.Location = new System.Drawing.Point(822, 482);
+            this.txtBatasPinjaman.Name = "txtBatasPinjaman";
+            this.txtBatasPinjaman.Size = new System.Drawing.Size(83, 26);
+            this.txtBatasPinjaman.TabIndex = 103;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(1174, 345);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(35, 20);
+            this.label16.TabIndex = 108;
+            this.label16.Text = "RP.";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label17.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label17.Location = new System.Drawing.Point(1173, 279);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(250, 50);
+            this.label17.TabIndex = 107;
+            this.label17.Text = "Denda jika \r\nmelewati batas peminjaman";
+            // 
+            // txtDenda
+            // 
+            this.txtDenda.BackColor = System.Drawing.Color.OldLace;
+            this.txtDenda.Location = new System.Drawing.Point(1206, 341);
+            this.txtDenda.Name = "txtDenda";
+            this.txtDenda.Size = new System.Drawing.Size(202, 26);
+            this.txtDenda.TabIndex = 106;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(909, 483);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(47, 25);
+            this.label18.TabIndex = 109;
+            this.label18.Text = "Hari";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(43, 351);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(162, 143);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 110;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.label19.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Cornsilk;
+            this.label19.Location = new System.Drawing.Point(25, 489);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(199, 28);
+            this.label19.TabIndex = 111;
+            this.label19.Text = "Pengembalian Buku";
             // 
             // FormUsermain
             // 
@@ -393,6 +507,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1828, 1144);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.txtDenda);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.txtBatasPinjaman);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtStok);
             this.Controls.Add(this.dtpTanggalkembali);
             this.Controls.Add(this.dtpTanggalpinjam);
             this.Controls.Add(this.txtID);
@@ -436,6 +560,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -472,5 +597,15 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DateTimePicker dtpTanggalpinjam;
         private System.Windows.Forms.DateTimePicker dtpTanggalkembali;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtStok;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtBatasPinjaman;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtDenda;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Label label19;
     }
 }

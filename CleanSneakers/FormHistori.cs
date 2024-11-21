@@ -73,12 +73,13 @@ namespace CleanSneakers
                         {
                             txtID.Text = kolom["id_peminjam"].ToString();
                             txtJudulbuku.Text = kolom["judul_buku"].ToString();
-                            txtNamapeminjam.Text = kolom["nama_peminjam"].ToString(); // Updated line
+                            txtNamapeminjam.Text = kolom["nama_peminjam"].ToString();
                         }
 
                         dataGridView1.DataSource = ds.Tables[0];
                         btnCari.Enabled = true;
                         btnClear.Enabled = true;
+                        btnHapus.Enabled = true;
                     }
                     else
                     {
@@ -86,7 +87,7 @@ namespace CleanSneakers
                         FormHistori_Load(null, null);
                     }
                 }
-                if (txtJudulbuku.Text != "")
+                else if (txtJudulbuku.Text != "")
                 {
                     query = string.Format("SELECT * FROM tbl_peminjaman WHERE judul_buku = '{0}'", txtJudulbuku.Text);
                     ds.Clear();
@@ -103,24 +104,58 @@ namespace CleanSneakers
                         {
                             txtID.Text = kolom["id_peminjam"].ToString();
                             txtJudulbuku.Text = kolom["judul_buku"].ToString();
-                            txtNamapeminjam.Text = kolom["nama_peminjam"].ToString(); // Updated line
+                            txtNamapeminjam.Text = kolom["nama_peminjam"].ToString();
                         }
 
                         dataGridView1.DataSource = ds.Tables[0];
                         btnCari.Enabled = true;
                         btnClear.Enabled = true;
+                        btnHapus.Enabled = true;
                     }
                     else
                     {
                         MessageBox.Show("Data Tidak Ada !!");
                         FormHistori_Load(null, null);
                     }
+
+                }
+                else if (txtID.Text != "")
+                {
+                    query = string.Format("SELECT * FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
+                    ds.Clear();
+                    koneksi.Open();
+                    perintah = new MySqlCommand(query, koneksi);
+                    adapter = new MySqlDataAdapter(perintah);
+                    perintah.ExecuteNonQuery();
+                    adapter.Fill(ds);
+                    koneksi.Close();
+
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow kolom in ds.Tables[0].Rows)
+                        {
+                            txtID.Text = kolom["id_peminjam"].ToString();
+                            txtJudulbuku.Text = kolom["judul_buku"].ToString();
+                            txtNamapeminjam.Text = kolom["nama_peminjam"].ToString();
+
+                        }
+
+                        dataGridView1.DataSource = ds.Tables[0];
+                        btnCari.Enabled = true;
+                        btnClear.Enabled = true;
+                        btnHapus.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data Tidak Ada !!");
+                        FormHistori_Load(null, null);
+                    }
+
                 }
                 else
                 {
                     MessageBox.Show("Data Yang Anda Pilih Tidak Ada !!");
                 }
-
             }
             catch (Exception ex)
             {
@@ -148,27 +183,40 @@ namespace CleanSneakers
                 {
                     if (MessageBox.Show("Anda Yakin Menghapus Data Ini ??", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        query = string.Format("DELETE FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
+                        koneksi.Open();
 
-                        if (koneksi.State == ConnectionState.Closed)
+                        // Ambil judul buku yang akan dihapus
+                        string judulBuku = "";
+                        query = string.Format("SELECT judul_buku FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
+                        perintah = new MySqlCommand(query, koneksi);
+                        var result = perintah.ExecuteScalar();
+                        if (result != null)
                         {
-                            koneksi.Open();
+                            judulBuku = result.ToString();
                         }
 
-                        MySqlCommand perintah = new MySqlCommand(query, koneksi);
+                        // Hapus data dari tbl_peminjaman
+                        query = string.Format("DELETE FROM tbl_peminjaman WHERE id_peminjam = '{0}'", txtID.Text);
+                        perintah = new MySqlCommand(query, koneksi);
                         int res = perintah.ExecuteNonQuery();
-                        koneksi.Close();
 
-                        if (res == 1)
+                        // Jika berhasil menghapus, tambahkan stok buku
+                        if (res == 1 && !string.IsNullOrEmpty(judulBuku))
                         {
-                            MessageBox.Show("Delete Data Sukses ...");
-                            FormHistori_Load(null, null);
-                            btnHapus.Enabled = false;
+                            query = string.Format("UPDATE tbl_buku SET stok_buku = stok_buku + 1 WHERE judul_buku = '{0}'", judulBuku);
+                            perintah = new MySqlCommand(query, koneksi);
+                            perintah.ExecuteNonQuery();
+
+                            MessageBox.Show("Peminjaman berhasil dihapus, stok buku telah diperbarui.");
                         }
                         else
                         {
-                            MessageBox.Show("Gagal Delete Data");
+                            MessageBox.Show("Gagal menghapus peminjaman.");
                         }
+
+                        koneksi.Close();
+                        FormHistori_Load(null, null);
+                        btnHapus.Enabled = false;
                     }
                 }
                 else
@@ -180,6 +228,13 @@ namespace CleanSneakers
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            FormPengembalian formpengembalian = new FormPengembalian();
+            formpengembalian.Show();
+            this.Hide();
         }
 
         private void FormHistori_Load(object sender, EventArgs e)

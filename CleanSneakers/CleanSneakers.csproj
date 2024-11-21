@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlXml" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
@@ -122,6 +123,12 @@
     <Compile Include="FormPengaturanakun.Designer.cs">
       <DependentUpon>FormPengaturanakun.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPengembalian.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPengembalian.Designer.cs">
+      <DependentUpon>FormPengembalian.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUserAkun.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPengaturanakun.resx">
       <DependentUpon>FormPengaturanakun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPengembalian.resx">
+      <DependentUpon>FormPengembalian.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserAkun.resx">
       <DependentUpon>FormUserAkun.cs</DependentUpon>

@@ -55,6 +55,14 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtStok = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtBatasPinjaman = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtDenda = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -106,7 +114,7 @@
             this.label6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label6.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label6.Location = new System.Drawing.Point(599, 369);
+            this.label6.Location = new System.Drawing.Point(475, 375);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(155, 32);
             this.label6.TabIndex = 19;
@@ -115,9 +123,9 @@
             // txtTahunterbit
             // 
             this.txtTahunterbit.BackColor = System.Drawing.Color.OldLace;
-            this.txtTahunterbit.Location = new System.Drawing.Point(605, 421);
+            this.txtTahunterbit.Location = new System.Drawing.Point(481, 427);
             this.txtTahunterbit.Name = "txtTahunterbit";
-            this.txtTahunterbit.Size = new System.Drawing.Size(305, 26);
+            this.txtTahunterbit.Size = new System.Drawing.Size(212, 26);
             this.txtTahunterbit.TabIndex = 18;
             // 
             // label5
@@ -126,7 +134,7 @@
             this.label5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label5.Location = new System.Drawing.Point(599, 279);
+            this.label5.Location = new System.Drawing.Point(475, 285);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(202, 32);
             this.label5.TabIndex = 17;
@@ -135,9 +143,9 @@
             // txtPengarangbuku
             // 
             this.txtPengarangbuku.BackColor = System.Drawing.Color.OldLace;
-            this.txtPengarangbuku.Location = new System.Drawing.Point(605, 331);
+            this.txtPengarangbuku.Location = new System.Drawing.Point(481, 337);
             this.txtPengarangbuku.Name = "txtPengarangbuku";
-            this.txtPengarangbuku.Size = new System.Drawing.Size(305, 26);
+            this.txtPengarangbuku.Size = new System.Drawing.Size(212, 26);
             this.txtPengarangbuku.TabIndex = 16;
             // 
             // label4
@@ -146,7 +154,7 @@
             this.label4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label4.Location = new System.Drawing.Point(599, 190);
+            this.label4.Location = new System.Drawing.Point(475, 196);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(142, 32);
             this.label4.TabIndex = 15;
@@ -155,16 +163,16 @@
             // txtJudulbuku
             // 
             this.txtJudulbuku.BackColor = System.Drawing.Color.OldLace;
-            this.txtJudulbuku.Location = new System.Drawing.Point(605, 242);
+            this.txtJudulbuku.Location = new System.Drawing.Point(481, 248);
             this.txtJudulbuku.Name = "txtJudulbuku";
-            this.txtJudulbuku.Size = new System.Drawing.Size(305, 26);
+            this.txtJudulbuku.Size = new System.Drawing.Size(212, 26);
             this.txtJudulbuku.TabIndex = 14;
             // 
             // btnHapus
             // 
-            this.btnHapus.Location = new System.Drawing.Point(1157, 328);
+            this.btnHapus.Location = new System.Drawing.Point(1232, 330);
             this.btnHapus.Name = "btnHapus";
-            this.btnHapus.Size = new System.Drawing.Size(185, 33);
+            this.btnHapus.Size = new System.Drawing.Size(158, 33);
             this.btnHapus.TabIndex = 29;
             this.btnHapus.Text = "Hapus";
             this.btnHapus.UseVisualStyleBackColor = true;
@@ -172,9 +180,9 @@
             // 
             // btnTambah
             // 
-            this.btnTambah.Location = new System.Drawing.Point(1157, 239);
+            this.btnTambah.Location = new System.Drawing.Point(1232, 241);
             this.btnTambah.Name = "btnTambah";
-            this.btnTambah.Size = new System.Drawing.Size(185, 33);
+            this.btnTambah.Size = new System.Drawing.Size(158, 33);
             this.btnTambah.TabIndex = 28;
             this.btnTambah.Text = "Tambah";
             this.btnTambah.UseVisualStyleBackColor = true;
@@ -182,9 +190,9 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(1397, 328);
+            this.btnClear.Location = new System.Drawing.Point(1472, 330);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(185, 33);
+            this.btnClear.Size = new System.Drawing.Size(158, 33);
             this.btnClear.TabIndex = 31;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -192,9 +200,9 @@
             // 
             // btnCari
             // 
-            this.btnCari.Location = new System.Drawing.Point(1397, 239);
+            this.btnCari.Location = new System.Drawing.Point(1472, 241);
             this.btnCari.Name = "btnCari";
-            this.btnCari.Size = new System.Drawing.Size(185, 33);
+            this.btnCari.Size = new System.Drawing.Size(158, 33);
             this.btnCari.TabIndex = 30;
             this.btnCari.Text = "Cari";
             this.btnCari.UseVisualStyleBackColor = true;
@@ -206,7 +214,7 @@
             this.label7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.label7.Location = new System.Drawing.Point(945, 190);
+            this.label7.Location = new System.Drawing.Point(1034, 196);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(105, 32);
             this.label7.TabIndex = 33;
@@ -215,7 +223,7 @@
             // txtIDbuku
             // 
             this.txtIDbuku.BackColor = System.Drawing.Color.OldLace;
-            this.txtIDbuku.Location = new System.Drawing.Point(951, 242);
+            this.txtIDbuku.Location = new System.Drawing.Point(1040, 248);
             this.txtIDbuku.Name = "txtIDbuku";
             this.txtIDbuku.Size = new System.Drawing.Size(151, 26);
             this.txtIDbuku.TabIndex = 32;
@@ -275,6 +283,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 92;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // label10
             // 
@@ -333,13 +342,92 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(1157, 418);
+            this.btnUpdate.Location = new System.Drawing.Point(1232, 420);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(185, 33);
+            this.btnUpdate.Size = new System.Drawing.Size(158, 33);
             this.btnUpdate.TabIndex = 98;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label1.Location = new System.Drawing.Point(738, 196);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 32);
+            this.label1.TabIndex = 100;
+            this.label1.Text = "Stok Buku";
+            // 
+            // txtStok
+            // 
+            this.txtStok.BackColor = System.Drawing.Color.OldLace;
+            this.txtStok.Location = new System.Drawing.Point(744, 245);
+            this.txtStok.Name = "txtStok";
+            this.txtStok.Size = new System.Drawing.Size(153, 26);
+            this.txtStok.TabIndex = 99;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label8.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label8.Location = new System.Drawing.Point(738, 289);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(272, 32);
+            this.label8.TabIndex = 102;
+            this.label8.Text = "Batas Harian Pinjaman";
+            // 
+            // txtBatasPinjaman
+            // 
+            this.txtBatasPinjaman.BackColor = System.Drawing.Color.OldLace;
+            this.txtBatasPinjaman.Location = new System.Drawing.Point(744, 338);
+            this.txtBatasPinjaman.Name = "txtBatasPinjaman";
+            this.txtBatasPinjaman.Size = new System.Drawing.Size(122, 26);
+            this.txtBatasPinjaman.TabIndex = 101;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label9.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label9.Location = new System.Drawing.Point(739, 367);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(250, 50);
+            this.label9.TabIndex = 104;
+            this.label9.Text = "Denda jika \r\nmelewati batas peminjaman";
+            // 
+            // txtDenda
+            // 
+            this.txtDenda.BackColor = System.Drawing.Color.OldLace;
+            this.txtDenda.Location = new System.Drawing.Point(772, 427);
+            this.txtDenda.Name = "txtDenda";
+            this.txtDenda.Size = new System.Drawing.Size(238, 26);
+            this.txtDenda.TabIndex = 103;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(740, 433);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(35, 20);
+            this.label14.TabIndex = 105;
+            this.label14.Text = "RP.";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(870, 340);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(47, 25);
+            this.label18.TabIndex = 110;
+            this.label18.Text = "Hari";
             // 
             // FormAdminmain
             // 
@@ -347,6 +435,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1828, 1144);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtDenda);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtBatasPinjaman);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtStok);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label13);
@@ -418,5 +514,13 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtStok;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtBatasPinjaman;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtDenda;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label18;
     }
 }
