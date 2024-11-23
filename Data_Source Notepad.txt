@@ -1,0 +1,8 @@
+Data Source
+Name : library
+
+Platform
+32/64-bit
+
+Driver 
+MySQL ODBC 3.51 Driver
